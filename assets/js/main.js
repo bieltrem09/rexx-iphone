@@ -71,6 +71,28 @@
     }, 1350);
   }
 
+  /* =============== Hero: leque de iPhones segue o ponteiro =============== */
+  if (finePointer) {
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+    const ease = () => {
+      cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
+      hero.style.setProperty("--hx", cx.toFixed(4)); hero.style.setProperty("--hy", cy.toFixed(4));
+      raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.001 ? requestAnimationFrame(ease) : 0;
+    };
+    hero.addEventListener("pointermove", (e) => {
+      if (reduced()) return;
+      const r = hero.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      if (!raf) raf = requestAnimationFrame(ease);
+    });
+    hero.addEventListener("pointerleave", () => { tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(ease); });
+  }
+  // Clicar num iPhone do hero abre o modelo em "Veja de perto"
+  $$("[data-hero-model]").forEach((a) => a.addEventListener("click", () => {
+    document.dispatchEvent(new CustomEvent("rexx:show-model", { detail: a.dataset.heroModel }));
+  }));
+
   /* =============== Split de palavras nos títulos =============== */
   $$(".split").forEach((el) => {
     let i = 0;
@@ -517,12 +539,21 @@
       if (b) { userPicked = true; show(curM, Number(b.dataset.p)); }
     });
 
+    // Vindo de um clique no hero: abre direto o modelo escolhido
+    let pending = 0;
+    document.addEventListener("rexx:show-model", (e) => {
+      const i = showcase.findIndex((m) => m.id === e.detail);
+      if (i < 0) return;
+      userPicked = true;
+      if (lit) show(i, 0); else pending = i;
+    });
+
     // Luz acende quando a cena entra na tela
     new IntersectionObserver(([e]) => {
       visible = e.isIntersecting;
       if (visible && !lit) {
         lit = true; scene.classList.add("is-lit");
-        setTimeout(() => show(0, 0), reduced() ? 0 : 450);
+        setTimeout(() => show(pending, 0), reduced() ? 0 : 450);
       }
       t0 = performance.now();
     }, { threshold: 0.35 }).observe(scene);
