@@ -36,6 +36,7 @@ Nada abaixo foi inventado; enquanto estiver `null` em `assets/js/config.js`, o s
 - [ ] **Logo oficial**: hoje o logo é tipográfico (`REXX` + bola laranja). Substitua o `.wordmark` no `index.html` por um SVG quando houver arquivo
 - [ ] **Fotos reais**: as imagens atuais são renders de referência em baixa resolução (736 px). Veja `assets/img/loja/LEIA-ME.md` — a foto da loja entra em `store.photo` e aparece automaticamente na seção Loja
 - [ ] **Especificações** da seção Comparar (`models[].specs`) conforme os modelos em estoque
+- [ ] **Fotos dos cards de Comparar**: gere com os prompts de `PROMPTS-IMAGENS.md` e salve em `assets/img/modelos/`
 - [ ] **Domínio**: atualizar `canonical` no `index.html`, `robots.txt` e `sitemap.xml`
 
 O site **não** diz que a REXX é revendedora autorizada Apple. Só inclua essa informação se houver comprovação.
@@ -44,5 +45,5 @@ O site **não** diz que a REXX é revendedora autorizada Apple. Só inclua essa 
 
 - Duas superfícies (claro → escuro) com o laranja REXX como acento: botões, marcadores, a "bola" do logo, a faixa e a seção do Instagram.
 - Tipografia: Inter Tight (títulos, tracking negativo), Inter (texto), Geist Mono (rótulos técnicos).
-- Movimento: intro com o logo, títulos que sobem palavra por palavra, imagens reveladas por cortina, faixa laranja que acelera e inclina com a velocidade do scroll, seção "Detalhe" fixa, comparação com rolagem horizontal, aparelho 3D que segue o mouse e botões magnéticos. Tudo respeita `prefers-reduced-motion`.
+- Movimento: intro com o logo, títulos que sobem palavra por palavra, imagens reveladas por cortina, faixa laranja que acelera e inclina com a velocidade do scroll, seção "Detalhe" fixa, comparação com rolagem horizontal (ou arrastar, em telas baixas), cards do guia empilhados que vão para trás com o scroll, aparelho 3D que segue o mouse e botões magnéticos. Tudo respeita `prefers-reduced-motion`.
 - Configurador: monta a mensagem do WhatsApp com modelo, cor e capacidade. Não há preços no site.

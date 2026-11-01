@@ -182,13 +182,46 @@
   let overflow = 0;
   function layoutCompare() {
     if (!compare || !track) return;
-    const pin = pinMq.matches && !reduced();
+    let pin = pinMq.matches && !reduced();
     compare.classList.toggle("is-pinned", pin);
     track.style.setProperty("--tx", "0px");
+    // Só fixa se título + cards + dica couberem na altura da tela; senão os cards
+    // cobririam o texto. Nesse caso cai para a rolagem horizontal nativa.
+    if (pin) {
+      const pinEl = $(".compare__pin");
+      const cs = getComputedStyle(pinEl);
+      const head = $(".compare__head");
+      const vp = $(".compare__viewport");
+      const need = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) + head.offsetHeight +
+        parseFloat(getComputedStyle(vp).marginTop) + track.offsetHeight + hint.offsetHeight + 24;
+      if (need > window.innerHeight) { pin = false; compare.classList.remove("is-pinned"); }
+    }
+    compare.classList.toggle("is-native", !pin);
+    if (hint) hint.lastChild.textContent = pin ? "Role para comparar" : (finePointer ? "Arraste para comparar" : "Deslize para comparar");
     if (!pin) { compare.style.height = ""; overflow = 0; return; }
     overflow = Math.max(0, track.scrollWidth - window.innerWidth);
     compare.style.height = `${window.innerHeight + overflow}px`;
   }
+
+  /* Guia: cards empilhados — cada card entra por baixo e empurra o anterior para trás */
+  const guideSec = $(".guide");
+  const scards = $$(".scard");
+  const gdots = $$(".guide__dots li");
+  let guidePinned = false;
+  function layoutGuide() {
+    if (!guideSec || !scards.length) return;
+    guidePinned = !reduced();
+    guideSec.classList.toggle("is-pinned", guidePinned);
+    if (guidePinned) {
+      const grid = $(".guide__grid");
+      const cs = getComputedStyle($(".guide__pin"));
+      const need = grid.offsetHeight + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      if (need > window.innerHeight) { guidePinned = false; guideSec.classList.remove("is-pinned"); }
+    }
+    guideSec.style.height = guidePinned ? `${window.innerHeight * (1 + (scards.length - 1) * 0.9 + 0.3)}px` : "";
+    if (!guidePinned) scards.forEach((c) => { c.style.removeProperty("--e"); c.style.removeProperty("--b"); });
+  }
+  const easeOut = (k) => 1 - Math.pow(1 - k, 3);
 
   function frame() {
     ticking = false;
@@ -221,12 +254,28 @@
       hint.style.setProperty("--hp", p.toFixed(3));
     }
 
+    if (guidePinned) {
+      const r = guideSec.getBoundingClientRect();
+      const total = r.height - vh;
+      const n = scards.length;
+      // termina um pouco antes do fim para o último card "assentar"
+      const t = clamp((-r.top / total) / 0.85, 0, 1) * (n - 1);
+      scards.forEach((c, i) => {
+        const e = i === 0 ? 1 : easeOut(clamp(t - (i - 1), 0, 1));
+        const b = i === n - 1 ? 0 : clamp(t - i, 0, 1);
+        c.style.setProperty("--e", e.toFixed(4));
+        c.style.setProperty("--b", b.toFixed(4));
+      });
+      const active = Math.round(t);
+      gdots.forEach((d, i) => d.classList.toggle("is-active", i === active));
+    }
+
     const fr = footer.getBoundingClientRect();
     if (fr.top < vh) footer.style.setProperty("--fp", clamp((vh - fr.top) / (fr.height * 0.9), 0, 1).toFixed(3));
   }
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } };
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", () => { layoutCompare(); onScroll(); });
+  window.addEventListener("resize", () => { layoutCompare(); layoutGuide(); onScroll(); });
 
   /* Faixa laranja: deriva contínua + aceleração e inclinação pela velocidade do scroll */
   if (band) {
@@ -327,6 +376,7 @@
         const sp = m.specs || {};
         const n = String(i + 1).padStart(2, "0");
         return `<li class="card" style="--i:${i}">
+          ${m.image ? `<figure class="card__media" hidden><img src="${esc(m.image)}" alt="${esc(m.name)}" decoding="async"></figure>` : ""}
           <div class="card__top"><span>${n}</span><b>${esc(m.tag || "")}</b></div>
           <h3>${esc(m.name)}</h3>
           ${sp.screen ? `<p class="card__screen">${esc(sp.screen)}<small>Tela</small></p>` : ""}
@@ -340,7 +390,34 @@
           <a class="card__link" data-pick="${esc(m.id)}" href="#linha">Escolher este</a>
         </li>`;
       }).join("");
+      // A foto só aparece se o arquivo existir (ver PROMPTS-IMAGENS.md)
+      $$(".card__media img", track).forEach((img) => {
+        img.addEventListener("load", () => { img.parentElement.hidden = false; layoutCompare(); onScroll(); });
+        img.addEventListener("error", () => img.parentElement.remove());
+      });
       new IntersectionObserver(([e], o) => { if (e.isIntersecting) { compare.classList.add("is-in"); o.disconnect(); } }, { threshold: 0.15 }).observe(compare);
+      // Modo nativo: arrastar com o mouse e barra de dica acompanhando
+      track.addEventListener("scroll", () => {
+        const m = track.scrollWidth - track.clientWidth;
+        if (compare.classList.contains("is-native")) hint.style.setProperty("--hp", m > 0 ? (track.scrollLeft / m).toFixed(3) : 0);
+      }, { passive: true });
+      if (finePointer) {
+        let down = null;
+        track.addEventListener("pointerdown", (e) => {
+          if (!compare.classList.contains("is-native") || e.button !== 0) return;
+          down = { x: e.clientX, left: track.scrollLeft, moved: false };
+        });
+        window.addEventListener("pointermove", (e) => {
+          if (!down) return;
+          const dx = e.clientX - down.x;
+          if (Math.abs(dx) > 4) { down.moved = true; track.classList.add("is-drag"); }
+          if (down.moved) track.scrollLeft = down.left - dx;
+        });
+        window.addEventListener("pointerup", () => {
+          if (down && down.moved) setTimeout(() => track.classList.remove("is-drag"), 0);
+          down = null;
+        });
+      }
       track.addEventListener("click", (e) => {
         const a = e.target.closest("[data-pick]");
         if (!a) return;
@@ -350,55 +427,14 @@
     }
   }
 
-  /* =============== Guia de armazenamento =============== */
-  const guide = [
-    { num: "128", unit: "GB", meter: "25%", label: "ou 256 GB para ter folga", text: "Mensagens, redes sociais, banco, alguns apps e fotos do dia a dia — com backup no iCloud ligado." },
-    { num: "256", unit: "GB", meter: "55%", label: "o ponto ideal para a maioria", text: "Muitas fotos, vídeos em 4K de vez em quando, jogos e aplicativos pesados, sem precisar apagar nada a cada mês." },
-    { num: "512", unit: "GB+", meter: "92%", label: "ou 1 TB para gravar em ProRes", text: "Vídeos longos em 4K, edição no próprio celular e arquivos de trabalho. Na linha Pro, gravação em ProRes ocupa muito espaço." },
-  ];
-  const tabs = $$(".guide__tabs [role=tab]");
-  const panel = $(".guide__panel");
-  if (tabs.length && panel) {
-    const g = (k) => $(`[data-guide="${k}"]`, panel);
-    const select = (i, focus) => {
-      tabs.forEach((t, j) => { t.setAttribute("aria-selected", String(i === j)); t.tabIndex = i === j ? 0 : -1; });
-      if (focus) tabs[i].focus();
-      $(".guide__tabs").style.setProperty("--gi", i);
-      panel.setAttribute("aria-labelledby", tabs[i].id);
-      panel.style.setProperty("--gm", guide[i].meter);
-      g("unit").textContent = guide[i].unit;
-      g("label").textContent = guide[i].label;
-      g("text").textContent = guide[i].text;
-      countTo(g("num"), Number(guide[i].num));
-      panel.classList.remove("is-swap"); void panel.offsetWidth; panel.classList.add("is-swap");
-    };
-    tabs.forEach((t, i) => {
-      t.addEventListener("click", () => select(i));
-      t.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") select((i + 1) % tabs.length, true);
-        if (e.key === "ArrowLeft") select((i - 1 + tabs.length) % tabs.length, true);
-      });
-    });
-    panel.style.setProperty("--gm", "0%");
-    new IntersectionObserver(([e], o) => { if (e.isIntersecting) { select(0); o.disconnect(); } }, { threshold: 0.4 }).observe(panel);
-  }
-  function countTo(el, to) {
-    const from = Number(el.textContent) || 0;
-    if (reduced() || from === to) { el.textContent = to; return; }
-    const t0 = performance.now(), d = 700;
-    const step = (t) => {
-      const k = clamp((t - t0) / d, 0, 1);
-      el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3)));
-      if (k < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-
   /* FAQ: fecha os outros ao abrir um */
   $$(".qa").forEach((d) => d.addEventListener("toggle", () => {
     if (d.open) $$(".qa").forEach((o) => { if (o !== d) o.open = false; });
   }));
 
   layoutCompare();
+  layoutGuide();
   frame();
+  // fontes mudam as alturas medidas
+  if (document.fonts) document.fonts.ready.then(() => { layoutCompare(); layoutGuide(); onScroll(); });
 })();

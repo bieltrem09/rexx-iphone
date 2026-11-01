@@ -43,10 +43,12 @@ window.REXX_CONFIG = {
    * mas a disponibilidade é da loja: ajuste conforme o estoque real.
    * `lenses: 3` desenha o módulo de câmera tripla (linha Pro).
    * `specs` alimenta a seção "Comparar" (dados divulgados pela Apple).
+   * `image` é a foto do card em "Comparar"; se o arquivo não existir, o card fica sem foto.
    */
   models: [
     {
       id: "17-pro-max",
+      image: "assets/img/modelos/iphone-17-pro-max.jpg", // gere com PROMPTS-IMAGENS.md
       specs: { screen: "6,9″", chip: "A19 Pro", camera: "3 × 48 MP", note: "Maior tela e maior bateria da linha" },
       name: "iPhone 17 Pro Max",
       tag: "Pro",
@@ -60,6 +62,7 @@ window.REXX_CONFIG = {
     },
     {
       id: "17-pro",
+      image: "assets/img/modelos/iphone-17-pro.jpg", // gere com PROMPTS-IMAGENS.md
       specs: { screen: "6,3″", chip: "A19 Pro", camera: "3 × 48 MP", note: "Câmera Pro em tamanho compacto" },
       name: "iPhone 17 Pro",
       tag: "Pro",
@@ -73,6 +76,7 @@ window.REXX_CONFIG = {
     },
     {
       id: "17",
+      image: "assets/img/modelos/iphone-17.jpg", // gere com PROMPTS-IMAGENS.md
       specs: { screen: "6,3″", chip: "A19", camera: "2 × 48 MP", note: "Tela de 120 Hz no modelo de entrada" },
       name: "iPhone 17",
       tag: "Essencial",
@@ -88,6 +92,7 @@ window.REXX_CONFIG = {
     },
     {
       id: "16",
+      image: "assets/img/modelos/iphone-16.jpg", // gere com PROMPTS-IMAGENS.md
       specs: { screen: "6,1″", chip: "A18", camera: "48 + 12 MP", note: "Botão Controle da Câmera" },
       name: "iPhone 16",
       tag: "Essencial",
@@ -103,6 +108,7 @@ window.REXX_CONFIG = {
     },
     {
       id: "15",
+      image: "assets/img/modelos/iphone-15.jpg", // gere com PROMPTS-IMAGENS.md
       specs: { screen: "6,1″", chip: "A16 Bionic", camera: "48 + 12 MP", note: "Dynamic Island e USB-C" },
       name: "iPhone 15",
       tag: "Essencial",

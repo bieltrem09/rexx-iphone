@@ -206,26 +206,42 @@
       </div>
     </section>
 
-    <!-- 05 · GUIA DE ARMAZENAMENTO -->
+    <!-- 05 · GUIA DE ARMAZENAMENTO (cards empilhados) -->
     <section class="guide" id="guia" data-theme="light" aria-labelledby="guide-title">
-      <div class="wrap guide__grid">
-        <header>
-          <p class="spec reveal"><span>05</span><span>Guia rápido</span></p>
-          <h2 class="section-title split" id="guide-title">Quanto espaço você precisa?</h2>
-          <p class="section-lead reveal">A dúvida mais comum na hora de escolher. Toque no perfil que mais parece com você.</p>
-        </header>
+      <div class="guide__pin">
+        <div class="wrap guide__grid">
+          <header class="guide__head">
+            <p class="spec reveal"><span>05</span><span>Guia rápido</span></p>
+            <h2 class="section-title split" id="guide-title">Quanto espaço você precisa?</h2>
+            <p class="section-lead reveal">A dúvida mais comum na hora de escolher. Role e encontre o perfil que mais parece com você.</p>
+            <ol class="guide__dots" aria-hidden="true"><li></li><li></li><li></li></ol>
+          </header>
 
-        <div class="guide__tool reveal">
-          <div class="guide__tabs" role="tablist" aria-label="Perfis de uso">
-            <button role="tab" aria-selected="true" aria-controls="g-panel" id="g-1" data-g="0">Essencial</button>
-            <button role="tab" aria-selected="false" aria-controls="g-panel" id="g-2" data-g="1">Fotos &amp; vídeos</button>
-            <button role="tab" aria-selected="false" aria-controls="g-panel" id="g-3" data-g="2">Criador</button>
-          </div>
-          <div class="guide__panel" id="g-panel" role="tabpanel" aria-labelledby="g-1">
-            <div class="guide__meter" aria-hidden="true"><span></span></div>
-            <p class="guide__num"><span data-guide="num">128</span><small data-guide="unit">GB</small></p>
-            <p class="guide__label" data-guide="label">ou 256 GB para ter folga</p>
-            <p class="guide__text" data-guide="text">Mensagens, redes sociais, banco, alguns apps e fotos do dia a dia — com backup no iCloud ligado.</p>
+          <div class="stack">
+            <article class="scard scard--paper">
+              <p class="scard__top"><span>01 / 03</span><span>Perfil</span></p>
+              <h3 class="scard__word"><span>Essencial</span></h3>
+              <p class="scard__num">128<small>GB</small></p>
+              <p class="scard__label">ou 256 GB para ter folga</p>
+              <div class="scard__meter"><span style="--gm:25%"></span></div>
+              <p class="scard__text">Mensagens, redes sociais, banco, alguns apps e fotos do dia a dia — com backup no iCloud ligado.</p>
+            </article>
+            <article class="scard scard--ink">
+              <p class="scard__top"><span>02 / 03</span><span>Perfil</span></p>
+              <h3 class="scard__word"><span>Fotos &amp; vídeos</span></h3>
+              <p class="scard__num">256<small>GB</small></p>
+              <p class="scard__label">o ponto ideal para a maioria</p>
+              <div class="scard__meter"><span style="--gm:55%"></span></div>
+              <p class="scard__text">Muitas fotos, vídeos em 4K de vez em quando, jogos e aplicativos pesados, sem precisar apagar nada a cada mês.</p>
+            </article>
+            <article class="scard scard--orange">
+              <p class="scard__top"><span>03 / 03</span><span>Perfil</span></p>
+              <h3 class="scard__word"><span>Criador</span></h3>
+              <p class="scard__num">512<small>GB+</small></p>
+              <p class="scard__label">ou 1 TB para gravar em ProRes</p>
+              <div class="scard__meter"><span style="--gm:92%"></span></div>
+              <p class="scard__text">Vídeos longos em 4K, edição no próprio celular e arquivos de trabalho. Na linha Pro, gravação em ProRes ocupa muito espaço.</p>
+            </article>
           </div>
         </div>
       </div>
