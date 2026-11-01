@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# [EDITAR] domínio definitivo
+Sitemap: https://rexxlimeira.com.br/sitemap.xml
