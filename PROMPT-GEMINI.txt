@@ -1,0 +1,122 @@
+INSTRUÇÕES PARA O GEMINI — LEIA TUDO ANTES DE COMEÇAR
+
+Você vai gerar 5 imagens fotográficas de produto para o site de uma loja de iPhones (REXX, Limeira — SP).
+São 5 imagens DIFERENTES, cada uma com o seu próprio prompt completo, logo abaixo.
+
+COMO TRABALHAR:
+1. Gere UMA imagem por vez, na ordem: Imagem 1, depois 2, 3, 4 e 5.
+2. Cada imagem usa SOMENTE o prompt dela. Não misture prompts e não junte aparelhos.
+3. Cada imagem mostra UM ÚNICO celular. Nunca dois aparelhos na mesma imagem.
+4. Formato de TODAS as imagens: paisagem (horizontal), proporção 3:2, na maior resolução possível.
+5. Antes de cada imagem, escreva apenas uma linha de título, por exemplo:
+   "Imagem 1 de 5 — iPhone 17 Pro Max (salvar como iphone-17-pro-max.jpg)".
+   Esse título é só texto da conversa: NUNCA escreva texto dentro da imagem.
+6. Se você conseguir gerar várias imagens na mesma resposta, gere as 5 em sequência, uma após a outra.
+   Se só conseguir uma por resposta, gere a Imagem 1 e pare. Quando eu escrever "próxima", gere a seguinte.
+7. Não faça perguntas e não resuma os prompts: siga cada um exatamente como está escrito.
+
+REGRAS QUE VALEM PARA AS 5 IMAGENS:
+- As 5 formam uma série: mesmo ângulo, mesma luz, mesmo enquadramento e o celular do mesmo tamanho na imagem.
+  Só mudam o modelo, a cor do aparelho e a cor do fundo.
+- Fotografia publicitária hiper-realista, cores vivas e bem saturadas, alta nitidez.
+- O celular aparece de costas, sem a tela visível.
+- A logo da Apple aparece UMA vez na traseira, nítida e sem deformação, na posição descrita em cada prompt.
+- Nenhum texto, número, nome ou marca d'água na imagem.
+
+======================================================================
+IMAGEM 1 DE 5 — iPhone 17 Pro Max — Laranja-cósmico
+Nome do arquivo: iphone-17-pro-max.jpg  |  Formato: paisagem 3:2
+======================================================================
+
+Ultra-premium commercial product photograph of ONE single flagship smartphone, seen from the back, in a professional photo studio.
+
+PRODUCT: a large 6.9-inch smartphone with a forged aluminum unibody in a vivid, saturated cosmic-orange anodized finish. The back has a full-width raised camera plateau that spans the entire top of the back, edge to edge, in the same orange aluminum. On the left side of the plateau are three large circular camera lenses arranged in a triangle, with dark glass and thin polished rings. On the right side of the plateau are a small round flash and a tiny dark sensor. Below the plateau, the lower part of the back has a flush matte frosted-glass panel in a slightly lighter orange tone. Flat sides, softly rounded corners, precise machined edges. Centered on the lower glass panel, below the camera plateau, is a single Apple logo (the apple silhouette with a bite taken out of its right side and a single leaf on top), about 12% of the phone width, in a glossy mirror-polished finish of the same color as the phone, perfectly symmetrical, crisp-edged and undistorted.
+
+POSE AND COMPOSITION: three-quarter rear view, the phone standing upright and rotated about 20 degrees to the left, tilted back slightly, floating just above the floor with a soft contact shadow beneath it. The phone is centered and fills about 65% of the frame height, with generous empty space on every side.
+
+BACKGROUND: seamless studio infinity sweep in saturated burnt orange, a smooth gradient from bright tangerine (#FF5A00) in the center to deep rust (#9A2E00) at the edges, with a soft circular glow behind the phone and a gentle vignette.
+
+LIGHTING: large softbox key light from the upper left, a strong rim light from behind on the right that traces the metal edges with a clean bright line, and a long specular highlight running down the aluminum side.
+
+STYLE: hyper-realistic advertising photography, shot on a medium-format camera with a 100mm lens at f/8, razor-sharp across the whole device, 8K detail, rich and vivid colors, high saturation, deep contrast, clean highlights, physically accurate reflections, premium tech-campaign look. True-to-life product proportions and thickness, exact lens count and placement, fine anodized-aluminum micro-texture on the frame, realistic glass reflections, accurate logo shape and position.
+
+AVOID: text, letters, numbers, words, any logo other than the single Apple logo, deformed or melted Apple logo, logo off-center, two logos, logo on the camera plateau, brand names, watermark, screen visible, front of the phone, hands, people, a second phone, extra or missing lenses, warped or melted geometry, cartoon, illustration, plastic CGI look, motion blur, dust, fingerprints, scratches, cluttered background, props.
+
+======================================================================
+IMAGEM 2 DE 5 — iPhone 17 Pro — Azul-intenso
+Nome do arquivo: iphone-17-pro.jpg  |  Formato: paisagem 3:2
+======================================================================
+
+Ultra-premium commercial product photograph of ONE single flagship smartphone, seen from the back, in a professional photo studio.
+
+PRODUCT: a 6.3-inch smartphone with a forged aluminum unibody in a deep, rich navy "deep blue" anodized finish. The back has a full-width raised camera plateau that spans the entire top of the back, edge to edge, in the same deep-blue aluminum. On the left side of the plateau are three large circular camera lenses arranged in a triangle, with dark glass and thin polished rings. On the right side of the plateau are a small round flash and a tiny dark sensor. Below the plateau, the lower part of the back has a flush matte frosted-glass panel in a slightly lighter blue tone. Flat sides, softly rounded corners, precise machined edges. Centered on the lower glass panel, below the camera plateau, is a single Apple logo (the apple silhouette with a bite taken out of its right side and a single leaf on top), about 12% of the phone width, in a glossy mirror-polished finish of the same color as the phone, perfectly symmetrical, crisp-edged and undistorted.
+
+POSE AND COMPOSITION: three-quarter rear view, the phone standing upright and rotated about 20 degrees to the left, tilted back slightly, floating just above the floor with a soft contact shadow beneath it. The phone is centered and fills about 65% of the frame height, with generous empty space on every side.
+
+BACKGROUND: seamless studio infinity sweep in saturated cobalt blue, a smooth gradient from electric cobalt (#1F5BFF) in the center to deep midnight navy (#071338) at the edges, with a soft circular glow behind the phone and a gentle vignette.
+
+LIGHTING: large softbox key light from the upper left, a strong rim light from behind on the right that traces the metal edges with a clean bright line, and a long specular highlight running down the aluminum side.
+
+STYLE: hyper-realistic advertising photography, shot on a medium-format camera with a 100mm lens at f/8, razor-sharp across the whole device, 8K detail, rich and vivid colors, high saturation, deep contrast, clean highlights, physically accurate reflections, premium tech-campaign look. True-to-life product proportions and thickness, exact lens count and placement, fine anodized-aluminum micro-texture on the frame, realistic glass reflections, accurate logo shape and position.
+
+AVOID: text, letters, numbers, words, any logo other than the single Apple logo, deformed or melted Apple logo, logo off-center, two logos, logo on the camera plateau, brand names, watermark, screen visible, front of the phone, hands, people, a second phone, extra or missing lenses, warped or melted geometry, cartoon, illustration, plastic CGI look, motion blur, dust, fingerprints, scratches, cluttered background, props.
+
+======================================================================
+IMAGEM 3 DE 5 — iPhone 17 — Lavanda
+Nome do arquivo: iphone-17.jpg  |  Formato: paisagem 3:2
+======================================================================
+
+Ultra-premium commercial product photograph of ONE single smartphone, seen from the back, in a professional photo studio.
+
+PRODUCT: a 6.3-inch smartphone with a flat aluminum frame in soft lavender and a matte frosted-glass back in the same lavender color. In the top-left corner of the back is a vertical pill-shaped raised camera bump, glass with a lavender tint, holding two circular camera lenses stacked vertically, with dark glass and thin polished rings. A small round flash sits beside the pill, to its right. Clean flat back, softly rounded corners. Exactly in the center of the back is a single Apple logo (the apple silhouette with a bite taken out of its right side and a single leaf on top), about 14% of the phone width, in a glossy mirror-polished finish that contrasts subtly with the matte glass, perfectly symmetrical, crisp-edged and undistorted.
+
+POSE AND COMPOSITION: three-quarter rear view, the phone standing upright and rotated about 20 degrees to the left, tilted back slightly, floating just above the floor with a soft contact shadow beneath it. The phone is centered and fills about 65% of the frame height, with generous empty space on every side.
+
+BACKGROUND: seamless studio infinity sweep in saturated violet, a smooth gradient from vivid lilac (#9B6BFF) in the center to deep royal purple (#2E0F7A) at the edges, with a soft circular glow behind the phone and a gentle vignette.
+
+LIGHTING: large softbox key light from the upper left, a strong rim light from behind on the right that traces the aluminum frame with a clean bright line, and a soft gradient reflection across the frosted glass.
+
+STYLE: hyper-realistic advertising photography, shot on a medium-format camera with a 100mm lens at f/8, razor-sharp across the whole device, 8K detail, rich and vivid colors, high saturation, deep contrast, clean highlights, physically accurate reflections, premium tech-campaign look. True-to-life product proportions and thickness, exact lens count and placement, fine anodized-aluminum micro-texture on the frame, realistic glass reflections, accurate logo shape and position.
+
+AVOID: text, letters, numbers, words, any logo other than the single Apple logo, deformed or melted Apple logo, logo off-center, two logos, logo on the camera plateau, brand names, watermark, screen visible, front of the phone, hands, people, a second phone, three lenses, square camera bump, full-width camera bar, warped or melted geometry, cartoon, illustration, plastic CGI look, motion blur, dust, fingerprints, cluttered background, props.
+
+======================================================================
+IMAGEM 4 DE 5 — iPhone 16 — Verde-acinzentado
+Nome do arquivo: iphone-16.jpg  |  Formato: paisagem 3:2
+======================================================================
+
+Ultra-premium commercial product photograph of ONE single smartphone, seen from the back, in a professional photo studio.
+
+PRODUCT: a 6.1-inch smartphone with a color-infused matte glass back in a rich teal green and a flat aluminum frame in matching teal. In the top-left corner of the back is a vertical pill-shaped raised camera bump holding two circular camera lenses stacked vertically, with dark glass and thin polished rings. A small round flash sits outside the pill, to its right. On the right side of the frame, a small flush sapphire-glass button is visible. Softly rounded corners, clean flat back. Exactly in the center of the back is a single Apple logo (the apple silhouette with a bite taken out of its right side and a single leaf on top), about 14% of the phone width, in a glossy mirror-polished finish that contrasts subtly with the matte glass, perfectly symmetrical, crisp-edged and undistorted.
+
+POSE AND COMPOSITION: three-quarter rear view, the phone standing upright and rotated about 20 degrees to the left, tilted back slightly, so the right side of the frame and its button are visible. The phone floats just above the floor with a soft contact shadow beneath it. It is centered and fills about 65% of the frame height, with generous empty space on every side.
+
+BACKGROUND: seamless studio infinity sweep in saturated teal, a smooth gradient from bright aqua-teal (#00C2B8) in the center to deep petrol green (#003B3E) at the edges, with a soft circular glow behind the phone and a gentle vignette.
+
+LIGHTING: large softbox key light from the upper left, a strong rim light from behind on the right that traces the aluminum frame with a clean bright line, and a soft gradient reflection across the matte glass.
+
+STYLE: hyper-realistic advertising photography, shot on a medium-format camera with a 100mm lens at f/8, razor-sharp across the whole device, 8K detail, rich and vivid colors, high saturation, deep contrast, clean highlights, physically accurate reflections, premium tech-campaign look. True-to-life product proportions and thickness, exact lens count and placement, fine anodized-aluminum micro-texture on the frame, realistic glass reflections, accurate logo shape and position.
+
+AVOID: text, letters, numbers, words, any logo other than the single Apple logo, deformed or melted Apple logo, logo off-center, two logos, logo on the camera plateau, brand names, watermark, screen visible, front of the phone, hands, people, a second phone, three lenses, square camera bump, full-width camera bar, warped or melted geometry, cartoon, illustration, plastic CGI look, motion blur, dust, fingerprints, cluttered background, props.
+
+======================================================================
+IMAGEM 5 DE 5 — iPhone 15 — Rosa
+Nome do arquivo: iphone-15.jpg  |  Formato: paisagem 3:2
+======================================================================
+
+Ultra-premium commercial product photograph of ONE single smartphone, seen from the back, in a professional photo studio.
+
+PRODUCT: a 6.1-inch smartphone with a color-infused frosted-glass back in soft pastel pink and contoured aluminum edges in matching pink. In the top-left corner of the back is a square raised camera bump with rounded corners, in pink glass, holding two circular camera lenses arranged diagonally (one top-left, one bottom-right), with dark glass and thin polished pink rings. A small round flash sits in the top-right corner of the square bump. Gently curved edges, softly rounded corners. Exactly in the center of the back is a single Apple logo (the apple silhouette with a bite taken out of its right side and a single leaf on top), about 14% of the phone width, in a glossy mirror-polished finish that contrasts subtly with the matte glass, perfectly symmetrical, crisp-edged and undistorted.
+
+POSE AND COMPOSITION: three-quarter rear view, the phone standing upright and rotated about 20 degrees to the left, tilted back slightly, floating just above the floor with a soft contact shadow beneath it. The phone is centered and fills about 65% of the frame height, with generous empty space on every side.
+
+BACKGROUND: seamless studio infinity sweep in saturated pink, a smooth gradient from hot pink (#FF4FA0) in the center to deep magenta (#8C0A4B) at the edges, with a soft circular glow behind the phone and a gentle vignette. The phone stays a soft pastel pink, clearly lighter than the background.
+
+LIGHTING: large softbox key light from the upper left, a strong rim light from behind on the right that traces the curved aluminum edge with a clean bright line, and a soft gradient reflection across the frosted glass.
+
+STYLE: hyper-realistic advertising photography, shot on a medium-format camera with a 100mm lens at f/8, razor-sharp across the whole device, 8K detail, rich and vivid colors, high saturation, deep contrast, clean highlights, physically accurate reflections, premium tech-campaign look. True-to-life product proportions and thickness, exact lens count and placement, fine anodized-aluminum micro-texture on the frame, realistic glass reflections, accurate logo shape and position.
+
+AVOID: text, letters, numbers, words, any logo other than the single Apple logo, deformed or melted Apple logo, logo off-center, two logos, logo on the camera plateau, brand names, watermark, screen visible, front of the phone, hands, people, a second phone, three lenses, lenses stacked vertically, pill-shaped camera bump, full-width camera bar, warped or melted geometry, cartoon, illustration, plastic CGI look, motion blur, dust, fingerprints, cluttered background, props.
+
+======================================================================
+FIM — são 5 imagens no total. Lembre-se: uma imagem por prompt, um celular por imagem, formato 3:2, sem texto na imagem.

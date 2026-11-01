@@ -11,6 +11,11 @@ para formarem uma série. Cada uma tem um fundo saturado diferente, e o fundo do
 | `iphone-16.jpg` | iPhone 16 | Verde-acinzentado | Verde-azulado |
 | `iphone-15.jpg` | iPhone 15 | Rosa | Rosa-choque |
 
+## Atalho para o Google Gemini
+
+Abra **`PROMPT-GEMINI.txt`**, copie o arquivo inteiro e cole numa conversa do Gemini. Ele já explica que são
+5 imagens, uma por vez, cada uma com o seu prompt. Se o Gemini parar depois da primeira, escreva **próxima**.
+
 ## Como usar
 
 1. Copie **o prompt completo** de cada modelo (ele já inclui o estilo da série) no gerador de imagens.
