@@ -4,21 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>REXX Limeira — iPhones e tecnologia em Limeira, SP</title>
-  <meta name="description" content="REXX Limeira: iPhones e tecnologia em Limeira, SP. Consulte modelos, cores e capacidades e fale direto com a loja pelo WhatsApp.">
+  <meta name="description" content="REXX Limeira: iPhones e tecnologia em Limeira, SP. Compare modelos, escolha cor e capacidade e fale direto com a loja pelo WhatsApp.">
   <meta name="theme-color" content="#0b0b0c">
   <!-- [EDITAR] troque pelo domínio definitivo -->
-  <link rel="canonical" href="https://rexxlimeira.com.br/">
+  <link rel="canonical" href="https://rexx-iphone.vercel.app/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="REXX Limeira — Tecnologia em primeiro plano">
   <meta property="og:description" content="iPhones e tecnologia em Limeira, SP. Consulte disponibilidade direto com a loja.">
-  <meta property="og:image" content="assets/img/rexx-lineup.jpg">
+  <meta property="og:image" content="https://rexx-iphone.vercel.app/assets/img/rexx-lineup.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/rexx-lineup.webp" type="image/webp">
   <link rel="stylesheet" href="assets/css/style.css">
 
@@ -32,22 +32,34 @@
     "sameAs": ["https://www.instagram.com/rexxlimeira/"]
   }
   </script>
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- INTRO -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__mark">
+      <span class="intro__letters"><span>R</span><span>E</span><span>X</span><span>X</span></span><span class="intro__ball"></span>
+    </div>
+    <div class="intro__bar"><span></span></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
 
   <!-- NAV -->
   <header class="nav" data-theme="light">
     <div class="nav__inner">
       <a class="wordmark" href="#topo" aria-label="REXX Limeira — início">
-        <span class="wordmark__type">REXX</span><span class="wordmark__dot" aria-hidden="true"></span>
+        <span class="wordmark__type">REXX</span><span class="wordmark__ball" aria-hidden="true"></span>
       </a>
       <nav class="nav__links" aria-label="Principal">
         <a href="#linha">Linha</a>
-        <a href="#como-comprar">Como comprar</a>
+        <a href="#comparar">Comparar</a>
+        <a href="#duvidas">Dúvidas</a>
         <a href="#loja">Loja</a>
       </nav>
-      <a class="btn btn--sm btn--solid nav__cta" data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#loja">WhatsApp</a>
+      <a class="btn btn--sm btn--solid nav__cta" data-magnetic data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#loja">WhatsApp</a>
       <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
         <span></span><span></span>
       </button>
@@ -56,9 +68,10 @@
 
   <div class="menu" id="menu" hidden>
     <nav aria-label="Menu">
-      <a href="#linha">Linha</a>
-      <a href="#como-comprar">Como comprar</a>
-      <a href="#loja">Loja</a>
+      <a href="#linha"><small>01</small>Linha</a>
+      <a href="#comparar"><small>02</small>Comparar</a>
+      <a href="#duvidas"><small>03</small>Dúvidas</a>
+      <a href="#loja"><small>04</small>Loja</a>
     </nav>
     <a class="btn btn--solid btn--block" data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#loja">Falar no WhatsApp</a>
   </div>
@@ -70,46 +83,52 @@
       <div class="hero__grid wrap">
         <div class="hero__copy">
           <p class="eyebrow reveal"><span class="eyebrow__dot"></span>Limeira — SP · iPhone &amp; tecnologia</p>
-          <h1 class="hero__title reveal" id="hero-title">
-            <span class="line">Tecnologia</span>
-            <span class="line">em primeiro</span>
-            <span class="line">plano<span class="accent">.</span></span>
+          <h1 class="hero__title" id="hero-title">
+            <span class="line"><span>Tecnologia</span></span>
+            <span class="line"><span>em primeiro</span></span>
+            <span class="line"><span>plano<span class="accent">.</span></span></span>
           </h1>
           <p class="hero__lead reveal">Escolha seu próximo iPhone conversando com quem trabalha com ele todos os dias. Modelo, cor e capacidade — você define, a REXX confirma.</p>
           <div class="hero__actions reveal">
-            <a class="btn btn--solid" data-wa="Olá, REXX! Gostaria de consultar a disponibilidade de um iPhone." href="#loja">Consultar disponibilidade</a>
-            <a class="btn btn--ghost" href="#linha">Ver a linha</a>
+            <a class="btn btn--solid" data-magnetic data-wa="Olá, REXX! Gostaria de consultar a disponibilidade de um iPhone." href="#loja">Consultar disponibilidade</a>
+            <a class="btn btn--ghost" data-magnetic href="#linha">Ver a linha</a>
           </div>
         </div>
 
         <figure class="hero__visual">
+          <div class="hero__orb" aria-hidden="true"></div>
           <div class="hero__plate" data-parallax>
             <picture>
               <source srcset="assets/img/rexx-lineup.webp" type="image/webp">
               <img src="assets/img/rexx-lineup.jpg" width="736" height="1104" alt="Quatro iPhones lado a lado, vistos de trás, nas cores preto, natural, azul e vinho" fetchpriority="high">
             </picture>
           </div>
-          <figcaption class="spec spec--hero">
-            <span>01</span><span>Linha em destaque</span>
+          <figcaption class="hero__badge" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#circ">REXX · LIMEIRA · IPHONE · TECNOLOGIA ·</textPath></text></svg>
+            <span></span>
           </figcaption>
         </figure>
       </div>
 
-      <div class="hero__marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <span>REXX</span><span>Limeira</span><span>iPhone</span><span>Tecnologia</span>
-          <span>REXX</span><span>Limeira</span><span>iPhone</span><span>Tecnologia</span>
-        </div>
-      </div>
+      <a class="hero__scroll" href="#detalhe" aria-label="Rolar para a próxima seção"><span></span></a>
     </section>
 
-    <!-- 02 · CINEMATIC (dark, pinned) -->
-    <section class="cine" data-theme="dark" aria-labelledby="cine-title">
+    <!-- FAIXA LARANJA -->
+    <div class="band" aria-hidden="true">
+      <div class="band__track">
+        <span>iPhone 17 Pro</span><i></i><span>Limeira — SP</span><i></i><span>Atendimento direto</span><i></i><span>REXX</span><i></i>
+        <span>iPhone 17 Pro</span><i></i><span>Limeira — SP</span><i></i><span>Atendimento direto</span><i></i><span>REXX</span><i></i>
+      </div>
+    </div>
+
+    <!-- 02 · CINEMATIC -->
+    <section class="cine" id="detalhe" data-theme="dark" aria-labelledby="cine-title">
       <div class="cine__sticky">
+        <div class="cine__glow" aria-hidden="true"></div>
         <div class="cine__media">
           <picture>
             <source srcset="assets/img/rexx-camera.webp" type="image/webp">
-            <img src="assets/img/rexx-camera.jpg" width="736" height="560" alt="Detalhe do módulo de câmera tripla de um iPhone na cor vinho" loading="lazy">
+            <img src="assets/img/rexx-camera.jpg" width="736" height="560" alt="Detalhe do módulo de câmera tripla de um iPhone" loading="lazy">
           </picture>
         </div>
         <div class="cine__copy wrap">
@@ -130,12 +149,13 @@
       <div class="wrap">
         <header class="section-head">
           <p class="spec reveal"><span>03</span><span>A linha</span></p>
-          <h2 class="section-title reveal" id="linha-title">Monte sua consulta.</h2>
+          <h2 class="section-title split" id="linha-title">Monte sua consulta.</h2>
           <p class="section-lead reveal">Selecione modelo, cor e capacidade. A mensagem chega pronta no WhatsApp da loja — a disponibilidade é confirmada por lá.</p>
         </header>
 
         <div class="config">
           <div class="config__stage" aria-hidden="true">
+            <div class="config__rings"><i></i><i></i><i></i></div>
             <div class="device" data-lenses="3">
               <div class="device__body">
                 <div class="device__plateau">
@@ -171,13 +191,53 @@
       </div>
     </section>
 
-    <!-- 04 · COMO COMPRAR -->
+    <!-- 04 · COMPARAR (horizontal) -->
+    <section class="compare" id="comparar" data-theme="dark" aria-labelledby="compare-title">
+      <div class="compare__pin">
+        <div class="wrap compare__head">
+          <p class="spec reveal"><span>04</span><span>Comparar</span></p>
+          <h2 class="section-title split" id="compare-title">Lado a lado.</h2>
+          <p class="section-lead reveal">Tela, chip e câmera de cada modelo, para você entender a diferença antes de perguntar o preço.</p>
+        </div>
+        <div class="compare__viewport">
+          <ol class="compare__track" data-list="compare"></ol>
+        </div>
+        <p class="compare__hint wrap" aria-hidden="true"><span></span>Role para comparar</p>
+      </div>
+    </section>
+
+    <!-- 05 · GUIA DE ARMAZENAMENTO -->
+    <section class="guide" id="guia" data-theme="light" aria-labelledby="guide-title">
+      <div class="wrap guide__grid">
+        <header>
+          <p class="spec reveal"><span>05</span><span>Guia rápido</span></p>
+          <h2 class="section-title split" id="guide-title">Quanto espaço você precisa?</h2>
+          <p class="section-lead reveal">A dúvida mais comum na hora de escolher. Toque no perfil que mais parece com você.</p>
+        </header>
+
+        <div class="guide__tool reveal">
+          <div class="guide__tabs" role="tablist" aria-label="Perfis de uso">
+            <button role="tab" aria-selected="true" aria-controls="g-panel" id="g-1" data-g="0">Essencial</button>
+            <button role="tab" aria-selected="false" aria-controls="g-panel" id="g-2" data-g="1">Fotos &amp; vídeos</button>
+            <button role="tab" aria-selected="false" aria-controls="g-panel" id="g-3" data-g="2">Criador</button>
+          </div>
+          <div class="guide__panel" id="g-panel" role="tabpanel" aria-labelledby="g-1">
+            <div class="guide__meter" aria-hidden="true"><span></span></div>
+            <p class="guide__num"><span data-guide="num">128</span><small data-guide="unit">GB</small></p>
+            <p class="guide__label" data-guide="label">ou 256 GB para ter folga</p>
+            <p class="guide__text" data-guide="text">Mensagens, redes sociais, banco, alguns apps e fotos do dia a dia — com backup no iCloud ligado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · COMO COMPRAR -->
     <section class="steps" id="como-comprar" data-theme="light" aria-labelledby="steps-title">
       <div class="wrap steps__grid">
         <div class="steps__intro">
-          <p class="spec reveal"><span>04</span><span>Como comprar</span></p>
-          <h2 class="section-title reveal" id="steps-title">Três passos.<br>Nenhum ruído.</h2>
-          <figure class="steps__media reveal">
+          <p class="spec reveal"><span>06</span><span>Como comprar</span></p>
+          <h2 class="section-title split" id="steps-title">Três passos. Nenhum ruído.</h2>
+          <figure class="steps__media wipe">
             <picture>
               <source srcset="assets/img/rexx-editorial.webp" type="image/webp">
               <img src="assets/img/rexx-editorial.jpg" width="735" height="589" alt="Três iPhones flutuando, nas cores rosa e amarelo" loading="lazy">
@@ -210,49 +270,91 @@
       </div>
     </section>
 
-    <!-- 05 · LOJA / CTA FINAL -->
+    <!-- 07 · DÚVIDAS -->
+    <section class="faq" id="duvidas" data-theme="light" aria-labelledby="faq-title">
+      <div class="wrap faq__grid">
+        <header>
+          <p class="spec reveal"><span>07</span><span>Dúvidas</span></p>
+          <h2 class="section-title split" id="faq-title">Antes de você perguntar.</h2>
+        </header>
+        <div class="faq__list">
+          <details class="qa reveal">
+            <summary><span>Qual a diferença entre o iPhone Pro e o modelo padrão?</span><i></i></summary>
+            <div class="qa__a"><div><p>Os modelos Pro têm câmera tripla com teleobjetiva (zoom óptico maior), chip da linha Pro e acabamento diferente. Os modelos padrão têm câmera dupla e atendem muito bem quem não precisa de zoom ou de gravação profissional. A comparação acima mostra os números de cada um.</p></div></div>
+          </details>
+          <details class="qa reveal">
+            <summary><span>Vale a pena comprar um modelo de geração anterior?</span><i></i></summary>
+            <div class="qa__a"><div><p>Muitas vezes, sim. Um modelo um ou dois anos mais antigo continua recebendo atualizações do iOS por vários anos e pode sair mais em conta. Vale comparar o que você realmente vai usar — câmera, tela e bateria — antes de decidir.</p></div></div>
+          </details>
+          <details class="qa reveal">
+            <summary><span>Como sei qual capacidade escolher?</span><i></i></summary>
+            <div class="qa__a"><div><p>Use o guia rápido acima como ponto de partida. Uma dica: veja quanto espaço o seu celular atual está usando em Ajustes › Geral › Armazenamento e escolha pelo menos o dobro.</p></div></div>
+          </details>
+          <details class="qa reveal">
+            <summary><span>Consigo passar meus dados do celular antigo?</span><i></i></summary>
+            <div class="qa__a"><div><p>Sim. Vindo de outro iPhone, o Início Rápido transfere tudo aproximando os dois aparelhos. Vindo de Android, o app “Migrar para o iOS” leva contatos, fotos, mensagens e mais. Se tiver dúvida no processo, pergunte no atendimento.</p></div></div>
+          </details>
+          <details class="qa reveal">
+            <summary><span>Quais as formas de pagamento e a garantia?</span><i></i></summary>
+            <div class="qa__a"><div><p>Formas de pagamento, condições e informações de garantia de cada aparelho são passadas no atendimento pelo WhatsApp, junto com a disponibilidade.</p></div></div>
+          </details>
+          <details class="qa reveal">
+            <summary><span>Preciso ir até a loja?</span><i></i></summary>
+            <div class="qa__a"><div><p>A conversa começa pelo WhatsApp. A forma de finalizar a compra e de receber o aparelho é combinada com a equipe durante o atendimento.</p></div></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 · INSTAGRAM -->
+    <section class="insta" data-theme="orange" aria-labelledby="insta-title">
+      <a class="insta__link" data-fill-href="instagram" href="https://www.instagram.com/rexxlimeira/" target="_blank" rel="noopener">
+        <span class="spec"><span>08</span><span>Novidades</span></span>
+        <span class="insta__title" id="insta-title">@rexxlimeira</span>
+        <span class="insta__cta">Acompanhe as chegadas no Instagram <i aria-hidden="true"></i></span>
+      </a>
+    </section>
+
+    <!-- 09 · LOJA -->
     <section class="loja" id="loja" data-theme="dark" aria-labelledby="loja-title">
       <div class="wrap">
-        <p class="spec reveal"><span>05</span><span>Loja</span></p>
-        <h2 class="loja__title reveal" id="loja-title">Limeira<span class="accent">,</span> SP<span class="accent">.</span></h2>
+        <p class="spec reveal"><span>09</span><span>Loja</span></p>
+        <h2 class="loja__title" id="loja-title"><span class="line"><span>Limeira<span class="accent">,</span> SP<span class="accent">.</span></span></span></h2>
+
+        <figure class="loja__photo wipe" data-fill-photo hidden>
+          <img alt="Loja REXX em Limeira" loading="lazy">
+        </figure>
 
         <dl class="facts">
-          <div class="fact reveal">
-            <dt>Endereço</dt>
-            <dd data-fill="address"></dd>
-          </div>
-          <div class="fact reveal">
-            <dt>Horário</dt>
-            <dd data-fill="hours"></dd>
-          </div>
-          <div class="fact reveal">
-            <dt>WhatsApp</dt>
-            <dd data-fill="whatsapp"></dd>
-          </div>
-          <div class="fact reveal">
-            <dt>Instagram</dt>
-            <dd data-fill="instagram"></dd>
-          </div>
+          <div class="fact reveal"><dt>Endereço</dt><dd data-fill="address"></dd></div>
+          <div class="fact reveal"><dt>Horário</dt><dd data-fill="hours"></dd></div>
+          <div class="fact reveal"><dt>WhatsApp</dt><dd data-fill="whatsapp"></dd></div>
+          <div class="fact reveal"><dt>Instagram</dt><dd data-fill="instagram"></dd></div>
         </dl>
 
         <div class="loja__actions reveal">
-          <a class="btn btn--light" data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#loja">Falar no WhatsApp</a>
-          <a class="btn btn--ghost-light" data-fill-href="maps" href="#loja" target="_blank" rel="noopener">Como chegar</a>
+          <a class="btn btn--solid" data-magnetic data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#loja">Falar no WhatsApp</a>
+          <a class="btn btn--ghost-light" data-magnetic data-fill-href="maps" href="#loja" target="_blank" rel="noopener">Como chegar</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer" data-theme="dark">
-    <div class="wrap footer__inner">
-      <div class="footer__brand">
-        <span class="wordmark wordmark--lg"><span class="wordmark__type">REXX</span><span class="wordmark__dot"></span></span>
-        <p>Tecnologia em primeiro plano.</p>
-      </div>
-      <div class="footer__legal">
-        <p data-fill="legal"></p>
-        <p>Apple e iPhone são marcas da Apple Inc., registradas nos EUA e em outros países, citadas apenas para identificar os produtos. Imagens meramente ilustrativas.</p>
-        <p>© <span data-year></span> REXX Limeira.</p>
+    <div class="wrap">
+      <div class="footer__giant" aria-hidden="true">REXX<span></span></div>
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <p>Tecnologia em primeiro plano.</p>
+          <nav class="footer__nav" aria-label="Rodapé">
+            <a href="#linha">Linha</a><a href="#comparar">Comparar</a><a href="#guia">Guia</a><a href="#duvidas">Dúvidas</a><a href="#loja">Loja</a>
+          </nav>
+        </div>
+        <div class="footer__legal">
+          <p data-fill="legal"></p>
+          <p>Apple e iPhone são marcas da Apple Inc., registradas nos EUA e em outros países, citadas apenas para identificar os produtos. Especificações conforme divulgadas pela Apple. Imagens meramente ilustrativas.</p>
+          <p>© <span data-year></span> REXX Limeira.</p>
+        </div>
       </div>
     </div>
   </footer>
