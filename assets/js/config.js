@@ -44,12 +44,19 @@ window.REXX_CONFIG = {
    * `lenses: 3` desenha o módulo de câmera tripla (linha Pro).
    * `specs` alimenta a seção "Comparar" (dados divulgados pela Apple).
    * `image` é a foto do card em "Comparar" (fundo transparente); sem foto, o card desenha o aparelho.
-   * `glow` é a cor da luz da cena atrás do aparelho.
+   * `photos` são as fotos por cor: aparecem na cena "Veja de perto" e no configurador.
+   *   O nome em `color` precisa ser igual ao de `colors`. `glow` é a cor da luz da cena.
+   *   Fotos ficam em assets/img/aparelhos/ (fundo transparente).
    */
   models: [
     {
       id: "17-pro-max",
-      image: "assets/img/modelos/iphone-17-pro-max.webp",
+      image: "assets/img/aparelhos/iphone-17-pro-max-laranja.webp",
+      photos: [
+        { color: "Laranja-cósmico", image: "assets/img/aparelhos/iphone-17-pro-max-laranja.webp", glow: "#ff6a1a" },
+        { color: "Azul-intenso", image: "assets/img/aparelhos/iphone-17-pro-max-azul.webp", glow: "#3d5bff" },
+        { color: "Prateado", image: "assets/img/aparelhos/iphone-17-pro-max-prateado.webp", glow: "#c9d2e6" },
+      ],
       glow: "#ff6a1a",
       specs: { screen: "6,9″", chip: "A19 Pro", camera: "3 × 48 MP", note: "Maior tela e maior bateria da linha" },
       name: "iPhone 17 Pro Max",
@@ -64,7 +71,12 @@ window.REXX_CONFIG = {
     },
     {
       id: "17-pro",
-      image: null, // [PENDENTE] foto: "assets/img/modelos/iphone-17-pro.webp"
+      image: "assets/img/aparelhos/iphone-17-pro-azul.webp",
+      photos: [
+        { color: "Azul-intenso", image: "assets/img/aparelhos/iphone-17-pro-azul.webp", glow: "#3d5bff" },
+        { color: "Laranja-cósmico", image: "assets/img/aparelhos/iphone-17-pro-laranja.webp", glow: "#ff6a1a" },
+        { color: "Prateado", image: "assets/img/aparelhos/iphone-17-pro-prateado.webp", glow: "#c9d2e6" },
+      ],
       glow: "#c0304f",
       specs: { screen: "6,3″", chip: "A19 Pro", camera: "3 × 48 MP", note: "Câmera Pro em tamanho compacto" },
       name: "iPhone 17 Pro",
@@ -79,7 +91,12 @@ window.REXX_CONFIG = {
     },
     {
       id: "17",
-      image: null, // sem foto: o card desenha o aparelho na cor da linha
+      image: "assets/img/aparelhos/iphone-17-lavanda.webp",
+      photos: [
+        { color: "Lavanda", image: "assets/img/aparelhos/iphone-17-lavanda.webp", glow: "#a58bff" },
+        { color: "Azul-névoa", image: "assets/img/aparelhos/iphone-17-azul-nevoa.webp", glow: "#5a9bff" },
+        { color: "Branco", image: "assets/img/aparelhos/iphone-17-branco.webp", glow: "#cfd8ea" },
+      ],
       glow: "#a58bff",
       specs: { screen: "6,3″", chip: "A19", camera: "2 × 48 MP", note: "Tela de 120 Hz no modelo de entrada" },
       name: "iPhone 17",
@@ -96,7 +113,12 @@ window.REXX_CONFIG = {
     },
     {
       id: "16-pro",
-      image: null, // [PENDENTE] foto: "assets/img/modelos/iphone-16-pro.webp"
+      image: "assets/img/aparelhos/iphone-16-pro-titanio-deserto.webp",
+      photos: [
+        { color: "Titânio-deserto", image: "assets/img/aparelhos/iphone-16-pro-titanio-deserto.webp", glow: "#e0a36e" },
+        { color: "Titânio branco", image: "assets/img/aparelhos/iphone-16-pro-titanio-branco.webp", glow: "#cfd8ea" },
+        { color: "Titânio preto", image: "assets/img/aparelhos/iphone-16-pro-titanio-preto.webp", glow: "#6f7a99" },
+      ],
       glow: "#c9c4b8",
       specs: { screen: "6,3″", chip: "A18 Pro", camera: "48 + 48 + 12 MP", note: "Teleobjetiva 5x e gravação em 4K a 120 qps" },
       name: "iPhone 16 Pro",
@@ -112,7 +134,13 @@ window.REXX_CONFIG = {
     },
     {
       id: "16",
-      image: "assets/img/modelos/iphone-16.webp",
+      image: "assets/img/aparelhos/iphone-16-ultramarino.webp",
+      photos: [
+        { color: "Ultramarino", image: "assets/img/aparelhos/iphone-16-ultramarino.webp", glow: "#4f5bff" },
+        { color: "Verde-acinzentado", image: "assets/img/aparelhos/iphone-16-verde.webp", glow: "#2fd1b8" },
+        { color: "Branco", image: "assets/img/aparelhos/iphone-16-branco.webp", glow: "#cfd8ea" },
+        { color: "Preto", image: "assets/img/aparelhos/iphone-16-preto.webp", glow: "#6f7a99" },
+      ],
       glow: "#9fb6e8",
       specs: { screen: "6,1″", chip: "A18", camera: "48 + 12 MP", note: "Botão Controle da Câmera" },
       name: "iPhone 16",
@@ -129,7 +157,11 @@ window.REXX_CONFIG = {
     },
     {
       id: "15-pro-max",
-      image: null, // [PENDENTE] foto: "assets/img/modelos/iphone-15-pro-max.webp"
+      image: "assets/img/aparelhos/iphone-15-pro-max-titanio-natural.webp",
+      photos: [
+        { color: "Titânio natural", image: "assets/img/aparelhos/iphone-15-pro-max-titanio-natural.webp", glow: "#d6c7a8" },
+        { color: "Titânio preto", image: "assets/img/aparelhos/iphone-15-pro-max-titanio-preto.webp", glow: "#6f7a99" },
+      ],
       glow: "#b9b4a9",
       specs: { screen: "6,7″", chip: "A17 Pro", camera: "48 + 12 + 12 MP", note: "Primeiro Pro Max em titânio, teleobjetiva 5x" },
       name: "iPhone 15 Pro Max",
@@ -145,7 +177,11 @@ window.REXX_CONFIG = {
     },
     {
       id: "15",
-      image: "assets/img/modelos/iphone-15.webp",
+      image: "assets/img/aparelhos/iphone-15-azul.webp",
+      photos: [
+        { color: "Azul", image: "assets/img/aparelhos/iphone-15-azul-perfil.webp", glow: "#4aa3ff" },
+        { color: "Verde", image: "assets/img/aparelhos/iphone-15-verde.webp", glow: "#7fe0a0" },
+      ],
       glow: "#4aa3ff",
       specs: { screen: "6,1″", chip: "A16 Bionic", camera: "48 + 12 MP", note: "Dynamic Island e USB-C" },
       name: "iPhone 15",
@@ -162,13 +198,4 @@ window.REXX_CONFIG = {
     },
   ],
 
-  /**
-   * Seção "Em destaque": a cena com palco e luz. Cada item usa uma foto com
-   * fundo transparente (veja assets/img/LEIA-ME-IMAGENS.md) e a cor do brilho.
-   */
-  featured: [
-    { model: "17-pro-max", image: "assets/img/modelos/iphone-17-pro-max.webp", color: "Laranja-cósmico", glow: "#ff6a1a" },
-    { model: "16", image: "assets/img/destaque/iphone-16-branco.webp", color: "Branco", glow: "#9fb6e8" },
-    { model: "15", image: "assets/img/destaque/iphone-15-azul.webp", color: "Azul", glow: "#4aa3ff" },
-  ],
 };

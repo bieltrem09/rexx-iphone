@@ -310,6 +310,9 @@
   if (models.length && form) {
     const stage = $(".config__stage");
     const device = $(".device");
+    const cphoto = document.createElement("img");
+    cphoto.className = "config__photo"; cphoto.decoding = "async";
+    stage.appendChild(cphoto);
     const lists = { models: $('[data-list="models"]', form), colors: $('[data-list="colors"]', form), storage: $('[data-list="storage"]', form) };
     const out = (k) => $$(`[data-out="${k}"]`);
     const cta = $("[data-config-cta]");
@@ -333,6 +336,17 @@
       const { model: m, color: c, storage: s } = state;
       stage.style.setProperty("--c", c.hex);
       device.style.setProperty("--c", c.hex);
+      // foto real da cor escolhida, se houver; senão o aparelho desenhado
+      const ph = (m.photos || []).find((p) => p.color === c.name);
+      if (ph) {
+        if (cphoto.getAttribute("src") !== ph.image) {
+          cphoto.classList.remove("is-in");
+          cphoto.onload = () => cphoto.classList.add("is-in");
+          cphoto.src = ph.image; cphoto.alt = `${m.name} ${c.name}`;
+          if (cphoto.complete) cphoto.classList.add("is-in");
+        }
+      }
+      stage.classList.toggle("has-photo", !!ph);
       device.dataset.lenses = String(m.lenses || 2);
       out("model").forEach((el) => (el.textContent = m.name));
       out("color").forEach((el) => (el.textContent = c.name));
@@ -367,10 +381,10 @@
       stage.addEventListener("pointermove", (e) => {
         if (reduced()) return;
         const r = stage.getBoundingClientRect();
-        device.style.setProperty("--ry", `${((e.clientX - r.left) / r.width - 0.5) * 24}deg`);
-        device.style.setProperty("--rx", `${-((e.clientY - r.top) / r.height - 0.5) * 18}deg`);
+        stage.style.setProperty("--ry", `${((e.clientX - r.left) / r.width - 0.5) * 24}deg`);
+        stage.style.setProperty("--rx", `${-((e.clientY - r.top) / r.height - 0.5) * 18}deg`);
       });
-      stage.addEventListener("pointerleave", () => { device.style.removeProperty("--rx"); device.style.removeProperty("--ry"); });
+      stage.addEventListener("pointerleave", () => { stage.style.removeProperty("--rx"); stage.style.removeProperty("--ry"); });
     }
 
     renderModels(); renderOptions(); paint(false);
@@ -440,55 +454,67 @@
     }
   }
 
-  /* =============== Em destaque: cena com palco, luz e troca de modelos =============== */
+  /* =============== Veja de perto: cena com palco, luz, modelos e cores =============== */
   const scene = $("[data-scene]");
-  const featured = (cfg.featured || []).filter((f) => (cfg.models || []).some((m) => m.id === f.model));
-  if (scene && featured.length) {
+  const showcase = (cfg.models || []).filter((m) => m.photos && m.photos.length);
+  if (scene && showcase.length) {
     const tabsEl = $('[data-list="feature-tabs"]');
+    const colorsEl = $('[data-list="feature-colors"]');
     const phonesEl = $('[data-list="feature-phones"]');
     const info = $(".feature__info");
     const fx = (k) => $(`[data-feature="${k}"]`);
     const fcta = $("[data-feature-cta]");
-    const modelOf = (f) => cfg.models.find((m) => m.id === f.model);
-    tabsEl.innerHTML = featured.map((f, i) =>
-      `<button class="ftab" role="tab" id="ftab-${i}" aria-selected="false" aria-controls="feature-stage" tabindex="-1">${esc(modelOf(f).name)}<i aria-hidden="true"></i></button>`).join("");
+    const hexOf = (m, color) => (m.colors.find((c) => c.name === color) || {}).hex || "#888";
+
+    tabsEl.innerHTML = showcase.map((m, i) =>
+      `<button class="ftab" role="tab" id="ftab-${i}" aria-selected="false" aria-controls="feature-stage" tabindex="-1">${esc(m.name)}<i aria-hidden="true"></i></button>`).join("");
     phonesEl.id = "feature-stage";
     phonesEl.setAttribute("role", "tabpanel");
-    phonesEl.innerHTML = featured.map((f) =>
-      `<div class="scene__phone"><img src="${esc(f.image)}" alt="${esc(modelOf(f).name)} ${esc(f.color || "")}" decoding="async"></div>`).join("");
+    // todas as fotos ficam no palco; só a ativa aparece
+    phonesEl.innerHTML = showcase.map((m, i) => m.photos.map((ph, j) =>
+      `<div class="scene__phone" data-m="${i}" data-p="${j}"><img src="${esc(ph.image)}" alt="${esc(m.name)} ${esc(ph.color)}" decoding="async" loading="${i === 0 ? "eager" : "lazy"}"></div>`).join("")).join("");
     const tabs = $$(".ftab", tabsEl);
-    const phones = $$(".scene__phone", phonesEl);
-    let cur = -1, lit = false, userPicked = false, hovering = false, visible = false, t0 = 0;
+    const phoneEl = (i, j) => $(`.scene__phone[data-m="${i}"][data-p="${j}"]`, phonesEl);
+    let curM = -1, curP = -1, lit = false, userPicked = false, hovering = false, visible = false, t0 = 0;
     const AUTO = 5500;
 
-    const show = (i, focus) => {
-      if (i === cur) return;
-      const f = featured[i], m = modelOf(f), sp = m.specs || {};
-      if (cur >= 0) {
-        const prev = phones[cur];
+    const show = (i, j = 0, focus) => {
+      if (i === curM && j === curP) return;
+      const m = showcase[i], ph = m.photos[j], sp = m.specs || {};
+      if (curM >= 0) {
+        const prev = phoneEl(curM, curP);
         prev.classList.remove("is-active"); prev.classList.add("is-leaving");
         setTimeout(() => prev.classList.remove("is-leaving"), 900);
       }
-      phones[i].classList.add("is-active");
-      tabs.forEach((t, j) => { t.setAttribute("aria-selected", String(i === j)); t.tabIndex = i === j ? 0 : -1; t.style.setProperty("--ap", 0); });
-      if (focus) tabs[i].focus();
-      phonesEl.setAttribute("aria-labelledby", tabs[i].id);
-      scene.style.setProperty("--glow", f.glow || m.glow || "#ff6a1a");
-      fx("name").textContent = m.name;
-      fx("meta").textContent = [sp.chip, sp.screen && `Tela ${sp.screen}`, sp.camera].filter(Boolean).join(" · ");
-      fx("index").textContent = String(i + 1).padStart(2, "0");
-      fx("color").textContent = f.color || "";
-      wireWa(fcta, `Olá, REXX! Vim pelo site e gostaria de consultar o ${m.name}${f.color ? ` na cor ${f.color}` : ""}.`);
-      info.classList.remove("is-swap"); void info.offsetWidth; info.classList.add("is-swap");
-      cur = i; t0 = performance.now();
+      phoneEl(i, j).classList.add("is-active");
+      if (i !== curM) {
+        tabs.forEach((t, k) => { t.setAttribute("aria-selected", String(i === k)); t.tabIndex = i === k ? 0 : -1; t.style.setProperty("--ap", 0); });
+        if (focus) tabs[i].focus();
+        phonesEl.setAttribute("aria-labelledby", tabs[i].id);
+        colorsEl.innerHTML = m.photos.map((p, k) =>
+          `<button class="fcolor" style="--sw:${hexOf(m, p.color)}" aria-pressed="false" data-p="${k}" title="${esc(p.color)}"><span class="sr">${esc(p.color)}</span></button>`).join("");
+        fx("name").textContent = m.name;
+        fx("meta").textContent = [sp.chip, sp.screen && `Tela ${sp.screen}`, sp.camera].filter(Boolean).join(" · ");
+        fx("index").textContent = String(i + 1).padStart(2, "0");
+        info.classList.remove("is-swap"); void info.offsetWidth; info.classList.add("is-swap");
+      }
+      $$(".fcolor", colorsEl).forEach((b, k) => b.setAttribute("aria-pressed", String(k === j)));
+      scene.style.setProperty("--glow", ph.glow || m.glow || "#ff6a1a");
+      fx("color").textContent = ph.color;
+      wireWa(fcta, `Olá, REXX! Vim pelo site e gostaria de consultar o ${m.name} na cor ${ph.color}.`);
+      curM = i; curP = j; t0 = performance.now();
     };
 
     tabs.forEach((t, i) => {
-      t.addEventListener("click", () => { userPicked = true; show(i); });
+      t.addEventListener("click", () => { userPicked = true; show(i, 0); });
       t.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") { userPicked = true; show((cur + 1) % tabs.length, true); }
-        if (e.key === "ArrowLeft") { userPicked = true; show((cur - 1 + tabs.length) % tabs.length, true); }
+        if (e.key === "ArrowRight") { userPicked = true; show((curM + 1) % tabs.length, 0, true); }
+        if (e.key === "ArrowLeft") { userPicked = true; show((curM - 1 + tabs.length) % tabs.length, 0, true); }
       });
+    });
+    colorsEl.addEventListener("click", (e) => {
+      const b = e.target.closest(".fcolor");
+      if (b) { userPicked = true; show(curM, Number(b.dataset.p)); }
     });
 
     // Luz acende quando a cena entra na tela
@@ -496,19 +522,19 @@
       visible = e.isIntersecting;
       if (visible && !lit) {
         lit = true; scene.classList.add("is-lit");
-        setTimeout(() => show(0), reduced() ? 0 : 450);
+        setTimeout(() => show(0, 0), reduced() ? 0 : 450);
       }
       t0 = performance.now();
     }, { threshold: 0.35 }).observe(scene);
 
-    // Troca automática, com barrinha de progresso na aba ativa
+    // Troca automática de modelo, com barrinha de progresso na aba ativa
     const tick = (now) => {
-      if (lit && visible && !userPicked && !hovering && !reduced() && cur >= 0) {
+      if (lit && visible && !userPicked && !hovering && !reduced() && curM >= 0) {
         const k = (now - t0) / AUTO;
-        tabs[cur].style.setProperty("--ap", Math.min(k, 1).toFixed(3));
-        if (k >= 1) show((cur + 1) % featured.length);
-      } else if (cur >= 0) {
-        t0 = now - (parseFloat(tabs[cur].style.getPropertyValue("--ap")) || 0) * AUTO;
+        tabs[curM].style.setProperty("--ap", Math.min(k, 1).toFixed(3));
+        if (k >= 1) show((curM + 1) % showcase.length, 0);
+      } else if (curM >= 0) {
+        t0 = now - (parseFloat(tabs[curM].style.getPropertyValue("--ap")) || 0) * AUTO;
       }
       requestAnimationFrame(tick);
     };

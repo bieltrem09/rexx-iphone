@@ -318,6 +318,16 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .config__rings i:nth-child(1) { width: 46%; }
 .config__rings i:nth-child(2) { width: 70%; }
 .config__rings i:nth-child(3) { width: 94%; border-color: rgba(255, 90, 0, 0.18); border-style: dashed; animation: spin 60s linear infinite; }
+.config__photo {
+  position: absolute; z-index: 1; left: 50%; top: 46%; height: 72%; max-width: 82%; object-fit: contain;
+  transform: translate(-50%, -50%) translateY(16px) scale(0.94); opacity: 0;
+  filter: drop-shadow(0 30px 36px rgba(0, 0, 0, 0.65)) saturate(1.08);
+  transition: opacity 0.6s var(--ease-out), transform 0.9s var(--ease-expo);
+  pointer-events: none;
+}
+.config__stage.has-photo .config__photo.is-in { opacity: 1; transform: translate(-50%, -50%) rotateY(var(--ry, 0deg)) rotateX(var(--rx, 0deg)); }
+.config__stage.has-photo .device { opacity: 0; transform: scale(0.8); }
+.config__stage:not(.has-photo) .config__photo { display: none; }
 .config__readout { position: absolute; left: 24px; right: 24px; bottom: 22px; display: flex; justify-content: space-between; gap: 16px; font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute-d); }
 .config__readout span:last-child { color: var(--orange); }
 
@@ -476,6 +486,15 @@ legend { display: flex; justify-content: space-between; width: 100%; font-family
 .ftab:hover { color: var(--text-d); border-color: rgba(255,255,255,0.3); }
 .ftab[aria-selected="true"] { background: #fff; border-color: #fff; color: var(--ink); }
 .ftab i { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--orange); transform-origin: left; transform: scaleX(var(--ap, 0)); }
+.feature__colors { display: flex; gap: 12px; margin-top: 20px; min-height: 36px; }
+.fcolor {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--sw);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+  animation: pop 0.5s var(--ease-expo) both; transition: box-shadow 0.4s var(--ease-expo), transform 0.4s var(--ease-expo);
+}
+.fcolor:nth-child(2) { animation-delay: 0.05s; } .fcolor:nth-child(3) { animation-delay: 0.1s; } .fcolor:nth-child(4) { animation-delay: 0.15s; }
+.fcolor:hover { transform: scale(1.12); }
+.fcolor[aria-pressed="true"] { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2), 0 0 0 3px var(--ink), 0 0 0 5px var(--orange); }
 .feature__info { margin-top: 40px; display: grid; gap: 12px; justify-items: start; }
 .feature__name { font-family: var(--f-display); font-weight: 500; font-size: clamp(2rem, 3.4vw, 3rem); letter-spacing: -0.045em; line-height: 1; }
 .feature__meta { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute-d); margin-bottom: 12px; }

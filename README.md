@@ -36,7 +36,7 @@ Nada abaixo foi inventado; enquanto estiver `null` em `assets/js/config.js`, o s
 - [ ] **Logo oficial**: hoje o logo é tipográfico (`REXX` + bola laranja). Substitua o `.wordmark` no `index.html` por um SVG quando houver arquivo
 - [ ] **Fotos reais**: as imagens atuais são renders de referência em baixa resolução (736 px). Veja `assets/img/loja/LEIA-ME.md` — a foto da loja entra em `store.photo` e aparece automaticamente na seção Loja
 - [ ] **Especificações** da seção Comparar (`models[].specs`) conforme os modelos em estoque
-- [ ] **Fotos dos cards de Comparar**: 17 Pro Max, 16 e 15 já têm foto. Faltam 17 Pro, 16 Pro e 15 Pro Max (`image: null` em `config.js`); sem foto, o card desenha o aparelho em CSS
+- [x] **Fotos dos aparelhos**: 22 fotos tratadas (fundo removido, saturação e nitidez) em `assets/img/aparelhos/`, ligadas por cor em `models[].photos`. Os originais enviados ficam em `img/`
 - [ ] **Domínio**: atualizar `canonical` no `index.html`, `robots.txt` e `sitemap.xml`
 
 O site **não** diz que a REXX é revendedora autorizada Apple. Só inclua essa informação se houver comprovação.

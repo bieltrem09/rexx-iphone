@@ -22,7 +22,7 @@ Abra **`PROMPT-GEMINI.txt`**, copie o arquivo inteiro e cole numa conversa do Ge
 2. Formato: **paisagem 3:2** (ex.: 1536 × 1024 ou maior). O card do site corta em 3:2.
 3. Gere 3 a 4 variações e escolha pela checklist no final deste arquivo.
 4. Exporte em **JPG, ~1800 px de largura, qualidade 85** e salve com o nome da tabela em
-   `assets/img/modelos/`. O site mostra a foto no card da seção **Comparar** sozinho; sem o arquivo, o card fica sem foto.
+   `assets/img/aparelhos/` e registre o caminho em `models[].photos` no `assets/js/config.js`.
 
 **Configurações por ferramenta:**
 - **Midjourney**: cole o prompt e acrescente no fim `--ar 3:2 --style raw --v 7 --q 2 --s 200`.
