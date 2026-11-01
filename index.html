@@ -54,6 +54,7 @@
         <span class="wordmark__type">REXX</span><span class="wordmark__ball" aria-hidden="true"></span>
       </a>
       <nav class="nav__links" aria-label="Principal">
+        <a href="#destaque">Destaque</a>
         <a href="#linha">Linha</a>
         <a href="#comparar">Comparar</a>
         <a href="#duvidas">Dúvidas</a>
@@ -68,10 +69,11 @@
 
   <div class="menu" id="menu" hidden>
     <nav aria-label="Menu">
-      <a href="#linha"><small>01</small>Linha</a>
-      <a href="#comparar"><small>02</small>Comparar</a>
-      <a href="#duvidas"><small>03</small>Dúvidas</a>
-      <a href="#loja"><small>04</small>Loja</a>
+      <a href="#destaque"><small>01</small>Destaque</a>
+      <a href="#linha"><small>02</small>Linha</a>
+      <a href="#comparar"><small>03</small>Comparar</a>
+      <a href="#duvidas"><small>04</small>Dúvidas</a>
+      <a href="#loja"><small>05</small>Loja</a>
     </nav>
     <a class="btn btn--solid btn--block" data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#loja">Falar no WhatsApp</a>
   </div>
@@ -144,11 +146,35 @@
       </div>
     </section>
 
-    <!-- 03 · CONFIGURADOR -->
+    <!-- 03 · EM DESTAQUE (cena) -->
+    <section class="feature" id="destaque" data-theme="dark" aria-labelledby="feature-title">
+      <div class="wrap feature__grid">
+        <div class="feature__copy">
+          <p class="spec reveal"><span>03</span><span>Em destaque</span></p>
+          <h2 class="section-title split" id="feature-title">Veja de perto.</h2>
+          <p class="section-lead reveal">Escolha um modelo e ele entra no palco. Passe o mouse ou o dedo para mover a luz.</p>
+          <div class="feature__tabs reveal" role="tablist" aria-label="Modelos em destaque" data-list="feature-tabs"></div>
+          <div class="feature__info" aria-live="polite">
+            <p class="feature__name" data-feature="name"></p>
+            <p class="feature__meta" data-feature="meta"></p>
+            <a class="btn btn--solid" data-magnetic data-feature-cta href="#loja">Consultar este modelo</a>
+          </div>
+        </div>
+        <div class="scene" data-scene>
+          <div class="scene__beam" aria-hidden="true"></div>
+          <div class="scene__glow" aria-hidden="true"></div>
+          <div class="scene__podium" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="scene__phones" data-list="feature-phones"></div>
+          <p class="scene__caption" aria-hidden="true"><span data-feature="index">01</span><span data-feature="color"></span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · CONFIGURADOR -->
     <section class="linha" id="linha" data-theme="dark" aria-labelledby="linha-title">
       <div class="wrap">
         <header class="section-head">
-          <p class="spec reveal"><span>03</span><span>A linha</span></p>
+          <p class="spec reveal"><span>04</span><span>A linha</span></p>
           <h2 class="section-title split" id="linha-title">Monte sua consulta.</h2>
           <p class="section-lead reveal">Selecione modelo, cor e capacidade. A mensagem chega pronta no WhatsApp da loja — a disponibilidade é confirmada por lá.</p>
         </header>
@@ -191,11 +217,11 @@
       </div>
     </section>
 
-    <!-- 04 · COMPARAR (horizontal) -->
+    <!-- 05 · COMPARAR (horizontal) -->
     <section class="compare" id="comparar" data-theme="dark" aria-labelledby="compare-title">
       <div class="compare__pin">
         <div class="wrap compare__head">
-          <p class="spec reveal"><span>04</span><span>Comparar</span></p>
+          <p class="spec reveal"><span>05</span><span>Comparar</span></p>
           <h2 class="section-title split" id="compare-title">Lado a lado.</h2>
           <p class="section-lead reveal">Tela, chip e câmera de cada modelo, para você entender a diferença antes de perguntar o preço.</p>
         </div>
@@ -206,12 +232,12 @@
       </div>
     </section>
 
-    <!-- 05 · GUIA DE ARMAZENAMENTO (cards empilhados) -->
+    <!-- 06 · GUIA DE ARMAZENAMENTO (cards empilhados) -->
     <section class="guide" id="guia" data-theme="light" aria-labelledby="guide-title">
       <div class="guide__pin">
         <div class="wrap guide__grid">
           <header class="guide__head">
-            <p class="spec reveal"><span>05</span><span>Guia rápido</span></p>
+            <p class="spec reveal"><span>06</span><span>Guia rápido</span></p>
             <h2 class="section-title split" id="guide-title">Quanto espaço você precisa?</h2>
             <p class="section-lead reveal">A dúvida mais comum na hora de escolher. Role e encontre o perfil que mais parece com você.</p>
             <ol class="guide__dots" aria-hidden="true"><li></li><li></li><li></li></ol>
@@ -247,11 +273,11 @@
       </div>
     </section>
 
-    <!-- 06 · COMO COMPRAR -->
+    <!-- 07 · COMO COMPRAR -->
     <section class="steps" id="como-comprar" data-theme="light" aria-labelledby="steps-title">
       <div class="wrap steps__grid">
         <div class="steps__intro">
-          <p class="spec reveal"><span>06</span><span>Como comprar</span></p>
+          <p class="spec reveal"><span>07</span><span>Como comprar</span></p>
           <h2 class="section-title split" id="steps-title">Três passos. Nenhum ruído.</h2>
           <figure class="steps__media wipe">
             <picture>
@@ -286,11 +312,11 @@
       </div>
     </section>
 
-    <!-- 07 · DÚVIDAS -->
+    <!-- 08 · DÚVIDAS -->
     <section class="faq" id="duvidas" data-theme="light" aria-labelledby="faq-title">
       <div class="wrap faq__grid">
         <header>
-          <p class="spec reveal"><span>07</span><span>Dúvidas</span></p>
+          <p class="spec reveal"><span>08</span><span>Dúvidas</span></p>
           <h2 class="section-title split" id="faq-title">Antes de você perguntar.</h2>
         </header>
         <div class="faq__list">
@@ -322,19 +348,19 @@
       </div>
     </section>
 
-    <!-- 08 · INSTAGRAM -->
+    <!-- 09 · INSTAGRAM -->
     <section class="insta" data-theme="orange" aria-labelledby="insta-title">
       <a class="insta__link" data-fill-href="instagram" href="https://www.instagram.com/rexxlimeira/" target="_blank" rel="noopener">
-        <span class="spec"><span>08</span><span>Novidades</span></span>
+        <span class="spec"><span>09</span><span>Novidades</span></span>
         <span class="insta__title" id="insta-title">@rexxlimeira</span>
         <span class="insta__cta">Acompanhe as chegadas no Instagram <i aria-hidden="true"></i></span>
       </a>
     </section>
 
-    <!-- 09 · LOJA -->
+    <!-- 10 · LOJA -->
     <section class="loja" id="loja" data-theme="dark" aria-labelledby="loja-title">
       <div class="wrap">
-        <p class="spec reveal"><span>09</span><span>Loja</span></p>
+        <p class="spec reveal"><span>10</span><span>Loja</span></p>
         <h2 class="loja__title" id="loja-title"><span class="line"><span>Limeira<span class="accent">,</span> SP<span class="accent">.</span></span></span></h2>
 
         <figure class="loja__photo wipe" data-fill-photo hidden>

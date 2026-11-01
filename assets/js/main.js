@@ -299,6 +299,11 @@
     requestAnimationFrame(loop);
   }
 
+  /* Aparelho desenhado em CSS (usado quando não há foto) */
+  function miniDevice(m) {
+    return `<div class="device" data-lenses="${m.lenses || 2}" style="--c:${m.colors[0].hex}" aria-hidden="true"><div class="device__body"><div class="device__plateau"><i class="lens lens--a"></i><i class="lens lens--b"></i><i class="lens lens--c"></i><i class="flash"></i></div><div class="device__sheen"></div></div></div>`;
+  }
+
   /* =============== Configurador =============== */
   const models = cfg.models || [];
   const form = $(".config__panel");
@@ -375,25 +380,33 @@
       track.innerHTML = models.map((m, i) => {
         const sp = m.specs || {};
         const n = String(i + 1).padStart(2, "0");
-        return `<li class="card" style="--i:${i}">
-          ${m.image ? `<figure class="card__media" hidden><img src="${esc(m.image)}" alt="${esc(m.name)}" decoding="async"></figure>` : ""}
-          <div class="card__top"><span>${n}</span><b>${esc(m.tag || "")}</b></div>
-          <h3>${esc(m.name)}</h3>
-          ${sp.screen ? `<p class="card__screen">${esc(sp.screen)}<small>Tela</small></p>` : ""}
-          <dl>
-            ${sp.chip ? `<div><dt>Chip</dt><dd>${esc(sp.chip)}</dd></div>` : ""}
-            ${sp.camera ? `<div><dt>Câmeras</dt><dd>${esc(sp.camera)}</dd></div>` : ""}
-            <div><dt>Capacidade</dt><dd>${esc(m.storage[0])} – ${esc(m.storage[m.storage.length - 1])}</dd></div>
-          </dl>
-          ${sp.note ? `<p class="card__note">${esc(sp.note)}</p>` : ""}
-          <div class="card__dots" aria-label="${m.colors.length} cores">${m.colors.map((c) => `<i style="background:${c.hex}" title="${esc(c.name)}"></i>`).join("")}</div>
-          <a class="card__link" data-pick="${esc(m.id)}" href="#linha">Escolher este</a>
+        const glow = m.glow || m.colors[0].hex;
+        return `<li class="card" style="--i:${i};--glow:${glow}">
+          <div class="card__stage" data-model="${esc(m.id)}">
+            ${m.image ? `<img class="card__phone" src="${esc(m.image)}" alt="${esc(m.name)}" decoding="async">` : miniDevice(m)}
+            <i class="card__floor" aria-hidden="true"></i>
+          </div>
+          <div class="card__body">
+            <div class="card__top"><span>${n}</span><b>${esc(m.tag || "")}</b></div>
+            <h3>${esc(m.name)}</h3>
+            ${sp.screen ? `<p class="card__screen">${esc(sp.screen)}<small>Tela</small></p>` : ""}
+            <dl>
+              ${sp.chip ? `<div><dt>Chip</dt><dd>${esc(sp.chip)}</dd></div>` : ""}
+              ${sp.camera ? `<div><dt>Câmeras</dt><dd>${esc(sp.camera)}</dd></div>` : ""}
+              <div><dt>Capacidade</dt><dd>${esc(m.storage[0])} – ${esc(m.storage[m.storage.length - 1])}</dd></div>
+            </dl>
+            ${sp.note ? `<p class="card__note">${esc(sp.note)}</p>` : ""}
+            <div class="card__dots" aria-label="${m.colors.length} cores">${m.colors.map((c) => `<i style="background:${c.hex}" title="${esc(c.name)}"></i>`).join("")}</div>
+            <a class="card__link" data-pick="${esc(m.id)}" href="#linha">Escolher este</a>
+          </div>
         </li>`;
       }).join("");
-      // A foto só aparece se o arquivo existir (ver PROMPTS-IMAGENS.md)
-      $$(".card__media img", track).forEach((img) => {
-        img.addEventListener("load", () => { img.parentElement.hidden = false; layoutCompare(); onScroll(); });
-        img.addEventListener("error", () => img.parentElement.remove());
+      // Sem o arquivo da foto, o palco desenha o aparelho na cor da linha
+      $$(".card__phone", track).forEach((img) => {
+        img.addEventListener("error", () => {
+          const m = models.find((x) => x.id === img.closest(".card__stage").dataset.model);
+          img.outerHTML = miniDevice(m);
+        }, { once: true });
       });
       new IntersectionObserver(([e], o) => { if (e.isIntersecting) { compare.classList.add("is-in"); o.disconnect(); } }, { threshold: 0.15 }).observe(compare);
       // Modo nativo: arrastar com o mouse e barra de dica acompanhando
@@ -425,6 +438,91 @@
         if (input && !input.checked) { input.checked = true; input.dispatchEvent(new Event("change", { bubbles: true })); }
       });
     }
+  }
+
+  /* =============== Em destaque: cena com palco, luz e troca de modelos =============== */
+  const scene = $("[data-scene]");
+  const featured = (cfg.featured || []).filter((f) => (cfg.models || []).some((m) => m.id === f.model));
+  if (scene && featured.length) {
+    const tabsEl = $('[data-list="feature-tabs"]');
+    const phonesEl = $('[data-list="feature-phones"]');
+    const info = $(".feature__info");
+    const fx = (k) => $(`[data-feature="${k}"]`);
+    const fcta = $("[data-feature-cta]");
+    const modelOf = (f) => cfg.models.find((m) => m.id === f.model);
+    tabsEl.innerHTML = featured.map((f, i) =>
+      `<button class="ftab" role="tab" id="ftab-${i}" aria-selected="false" aria-controls="feature-stage" tabindex="-1">${esc(modelOf(f).name)}<i aria-hidden="true"></i></button>`).join("");
+    phonesEl.id = "feature-stage";
+    phonesEl.setAttribute("role", "tabpanel");
+    phonesEl.innerHTML = featured.map((f) =>
+      `<div class="scene__phone"><img src="${esc(f.image)}" alt="${esc(modelOf(f).name)} ${esc(f.color || "")}" decoding="async"></div>`).join("");
+    const tabs = $$(".ftab", tabsEl);
+    const phones = $$(".scene__phone", phonesEl);
+    let cur = -1, lit = false, userPicked = false, hovering = false, visible = false, t0 = 0;
+    const AUTO = 5500;
+
+    const show = (i, focus) => {
+      if (i === cur) return;
+      const f = featured[i], m = modelOf(f), sp = m.specs || {};
+      if (cur >= 0) {
+        const prev = phones[cur];
+        prev.classList.remove("is-active"); prev.classList.add("is-leaving");
+        setTimeout(() => prev.classList.remove("is-leaving"), 900);
+      }
+      phones[i].classList.add("is-active");
+      tabs.forEach((t, j) => { t.setAttribute("aria-selected", String(i === j)); t.tabIndex = i === j ? 0 : -1; t.style.setProperty("--ap", 0); });
+      if (focus) tabs[i].focus();
+      phonesEl.setAttribute("aria-labelledby", tabs[i].id);
+      scene.style.setProperty("--glow", f.glow || m.glow || "#ff6a1a");
+      fx("name").textContent = m.name;
+      fx("meta").textContent = [sp.chip, sp.screen && `Tela ${sp.screen}`, sp.camera].filter(Boolean).join(" · ");
+      fx("index").textContent = String(i + 1).padStart(2, "0");
+      fx("color").textContent = f.color || "";
+      wireWa(fcta, `Olá, REXX! Vim pelo site e gostaria de consultar o ${m.name}${f.color ? ` na cor ${f.color}` : ""}.`);
+      info.classList.remove("is-swap"); void info.offsetWidth; info.classList.add("is-swap");
+      cur = i; t0 = performance.now();
+    };
+
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => { userPicked = true; show(i); });
+      t.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") { userPicked = true; show((cur + 1) % tabs.length, true); }
+        if (e.key === "ArrowLeft") { userPicked = true; show((cur - 1 + tabs.length) % tabs.length, true); }
+      });
+    });
+
+    // Luz acende quando a cena entra na tela
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible && !lit) {
+        lit = true; scene.classList.add("is-lit");
+        setTimeout(() => show(0), reduced() ? 0 : 450);
+      }
+      t0 = performance.now();
+    }, { threshold: 0.35 }).observe(scene);
+
+    // Troca automática, com barrinha de progresso na aba ativa
+    const tick = (now) => {
+      if (lit && visible && !userPicked && !hovering && !reduced() && cur >= 0) {
+        const k = (now - t0) / AUTO;
+        tabs[cur].style.setProperty("--ap", Math.min(k, 1).toFixed(3));
+        if (k >= 1) show((cur + 1) % featured.length);
+      } else if (cur >= 0) {
+        t0 = now - (parseFloat(tabs[cur].style.getPropertyValue("--ap")) || 0) * AUTO;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    // Luz e aparelho seguem o ponteiro
+    scene.addEventListener("pointerenter", () => (hovering = true));
+    scene.addEventListener("pointermove", (e) => {
+      if (reduced()) return;
+      const r = scene.getBoundingClientRect();
+      scene.style.setProperty("--sx", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+      scene.style.setProperty("--sy", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+    });
+    scene.addEventListener("pointerleave", () => { hovering = false; scene.style.setProperty("--sx", 0); scene.style.setProperty("--sy", 0); });
   }
 
   /* FAQ: fecha os outros ao abrir um */

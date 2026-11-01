@@ -43,12 +43,14 @@ window.REXX_CONFIG = {
    * mas a disponibilidade é da loja: ajuste conforme o estoque real.
    * `lenses: 3` desenha o módulo de câmera tripla (linha Pro).
    * `specs` alimenta a seção "Comparar" (dados divulgados pela Apple).
-   * `image` é a foto do card em "Comparar"; se o arquivo não existir, o card fica sem foto.
+   * `image` é a foto do card em "Comparar" (fundo transparente); sem foto, o card desenha o aparelho.
+   * `glow` é a cor da luz da cena atrás do aparelho.
    */
   models: [
     {
       id: "17-pro-max",
-      image: "assets/img/modelos/iphone-17-pro-max.jpg", // gere com PROMPTS-IMAGENS.md
+      image: "assets/img/modelos/iphone-17-pro-max.webp",
+      glow: "#ff6a1a",
       specs: { screen: "6,9″", chip: "A19 Pro", camera: "3 × 48 MP", note: "Maior tela e maior bateria da linha" },
       name: "iPhone 17 Pro Max",
       tag: "Pro",
@@ -62,7 +64,8 @@ window.REXX_CONFIG = {
     },
     {
       id: "17-pro",
-      image: "assets/img/modelos/iphone-17-pro.jpg", // gere com PROMPTS-IMAGENS.md
+      image: null, // [PENDENTE] foto: "assets/img/modelos/iphone-17-pro.webp"
+      glow: "#c0304f",
       specs: { screen: "6,3″", chip: "A19 Pro", camera: "3 × 48 MP", note: "Câmera Pro em tamanho compacto" },
       name: "iPhone 17 Pro",
       tag: "Pro",
@@ -76,7 +79,8 @@ window.REXX_CONFIG = {
     },
     {
       id: "17",
-      image: "assets/img/modelos/iphone-17.jpg", // gere com PROMPTS-IMAGENS.md
+      image: null, // sem foto: o card desenha o aparelho na cor da linha
+      glow: "#a58bff",
       specs: { screen: "6,3″", chip: "A19", camera: "2 × 48 MP", note: "Tela de 120 Hz no modelo de entrada" },
       name: "iPhone 17",
       tag: "Essencial",
@@ -91,8 +95,25 @@ window.REXX_CONFIG = {
       ],
     },
     {
+      id: "16-pro",
+      image: null, // [PENDENTE] foto: "assets/img/modelos/iphone-16-pro.webp"
+      glow: "#c9c4b8",
+      specs: { screen: "6,3″", chip: "A18 Pro", camera: "48 + 48 + 12 MP", note: "Teleobjetiva 5x e gravação em 4K a 120 qps" },
+      name: "iPhone 16 Pro",
+      tag: "Pro",
+      lenses: 3,
+      storage: ["128 GB", "256 GB", "512 GB", "1 TB"],
+      colors: [
+        { name: "Titânio-deserto", hex: "#bfa48a" },
+        { name: "Titânio natural", hex: "#b8b3a8" },
+        { name: "Titânio branco", hex: "#ecebe6" },
+        { name: "Titânio preto", hex: "#3b3b3d" },
+      ],
+    },
+    {
       id: "16",
-      image: "assets/img/modelos/iphone-16.jpg", // gere com PROMPTS-IMAGENS.md
+      image: "assets/img/modelos/iphone-16.webp",
+      glow: "#9fb6e8",
       specs: { screen: "6,1″", chip: "A18", camera: "48 + 12 MP", note: "Botão Controle da Câmera" },
       name: "iPhone 16",
       tag: "Essencial",
@@ -107,8 +128,25 @@ window.REXX_CONFIG = {
       ],
     },
     {
+      id: "15-pro-max",
+      image: null, // [PENDENTE] foto: "assets/img/modelos/iphone-15-pro-max.webp"
+      glow: "#b9b4a9",
+      specs: { screen: "6,7″", chip: "A17 Pro", camera: "48 + 12 + 12 MP", note: "Primeiro Pro Max em titânio, teleobjetiva 5x" },
+      name: "iPhone 15 Pro Max",
+      tag: "Pro",
+      lenses: 3,
+      storage: ["256 GB", "512 GB", "1 TB"],
+      colors: [
+        { name: "Titânio natural", hex: "#b8b3a8" },
+        { name: "Titânio azul", hex: "#3f4a5c" },
+        { name: "Titânio branco", hex: "#ecebe6" },
+        { name: "Titânio preto", hex: "#3b3b3d" },
+      ],
+    },
+    {
       id: "15",
-      image: "assets/img/modelos/iphone-15.jpg", // gere com PROMPTS-IMAGENS.md
+      image: "assets/img/modelos/iphone-15.webp",
+      glow: "#4aa3ff",
       specs: { screen: "6,1″", chip: "A16 Bionic", camera: "48 + 12 MP", note: "Dynamic Island e USB-C" },
       name: "iPhone 15",
       tag: "Essencial",
@@ -122,5 +160,15 @@ window.REXX_CONFIG = {
         { name: "Rosa", hex: "#f1cfd3" },
       ],
     },
+  ],
+
+  /**
+   * Seção "Em destaque": a cena com palco e luz. Cada item usa uma foto com
+   * fundo transparente (veja assets/img/LEIA-ME-IMAGENS.md) e a cor do brilho.
+   */
+  featured: [
+    { model: "17-pro-max", image: "assets/img/modelos/iphone-17-pro-max.webp", color: "Laranja-cósmico", glow: "#ff6a1a" },
+    { model: "16", image: "assets/img/destaque/iphone-16-branco.webp", color: "Branco", glow: "#9fb6e8" },
+    { model: "15", image: "assets/img/destaque/iphone-15-azul.webp", color: "Azul", glow: "#4aa3ff" },
   ],
 };
