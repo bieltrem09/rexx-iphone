@@ -18,7 +18,7 @@
   const contact = cfg.contact || {};
   const store = cfg.store || {};
   const waNumber = contact.whatsapp;
-  const waLink = (msg) => (waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}` : "#loja");
+  const waLink = (msg) => (waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}` : "#contato");
   const wireWa = (a, msg) => {
     a.href = waLink(msg);
     if (waNumber) { a.target = "_blank"; a.rel = "noopener"; }
@@ -186,6 +186,114 @@
     });
   }
 
+
+  /* =============== Seções que só aparecem com dados reais =============== */
+  const tList = cfg.testimonials || [];
+  if (tList.length) {
+    $('[data-list="testimonials"]').innerHTML = tList.map((t) =>
+      `<figure class="review reveal"><blockquote>${esc(t.text)}</blockquote><figcaption><b>${esc(t.name || "")}</b>${t.detail ? ` · ${esc(t.detail)}` : ""}</figcaption></figure>`).join("");
+    $('[data-config-section="testimonials"]').hidden = false;
+    $$('[data-list="testimonials"] .reveal').forEach((el) => io.observe(el));
+  }
+  const sList = cfg.services || [];
+  if (sList.length) {
+    $('[data-list="services"]').innerHTML = sList.map((x, i) =>
+      `<li class="service reveal"><span>${String(i + 1).padStart(2, "0")}</span><h3>${esc(x.title)}</h3><p>${esc(x.text || "")}</p></li>`).join("");
+    $('[data-config-section="services"]').hidden = false;
+    $$('[data-list="services"] .reveal').forEach((el) => io.observe(el));
+  }
+  // Numeração das seções segue a ordem real da página (pula as escondidas)
+  {
+    let n = 1;
+    $$("main > section:not([hidden])").forEach((sec) => {
+      if (sec.classList.contains("hero")) return;
+      const num = $(".spec > span:first-child", sec);
+      if (num) num.textContent = String(++n).padStart(2, "0");
+    });
+  }
+
+  /* Mapa: aparece quando o endereço estiver preenchido */
+  const mapBox = $("[data-fill-map]");
+  if (mapBox && store.address) {
+    $("iframe", mapBox).src = `https://www.google.com/maps?q=${encodeURIComponent(`REXX ${store.address}`)}&output=embed`;
+    mapBox.hidden = false;
+  }
+
+  /* =============== Sobre: frase que acende palavra por palavra com o scroll =============== */
+  const statement = $("[data-scrub]");
+  let swords = [];
+  if (statement) {
+    const hl = /^(conversa|explica|escolha|Limeira)/i;
+    statement.setAttribute("aria-label", statement.textContent.trim());
+    statement.innerHTML = statement.textContent.trim().split(/\s+/).map((w) =>
+      `<span class="sw${hl.test(w) ? " is-hl" : ""}" aria-hidden="true">${esc(w)}</span>`).join(" ");
+    swords = $$(".sw", statement);
+  }
+  function scrubStatement(vh) {
+    if (!swords.length) return;
+    const r = statement.getBoundingClientRect();
+    if (r.top > vh || r.bottom < 0) return;
+    const k = clamp((vh * 0.85 - r.top) / (r.height + vh * 0.35), 0, 1);
+    const on = Math.round(k * swords.length);
+    swords.forEach((w, i) => w.classList.toggle("is-on", i < on));
+  }
+
+  /* =============== Dicas: luz laranja segue o ponteiro no card =============== */
+  if (finePointer) {
+    $$(".tip").forEach((t) => t.addEventListener("pointermove", (e) => {
+      const r = t.getBoundingClientRect();
+      t.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      t.style.setProperty("--my", `${e.clientY - r.top}px`);
+    }));
+  }
+
+  /* =============== Fale com a REXX: formulário que monta a mensagem =============== */
+  const cform = $(".cform");
+  if (cform) {
+    const sel = $('[data-list="contact-models"]', cform);
+    (cfg.models || []).forEach((m) => sel.insertAdjacentHTML("beforeend", `<option>${esc(m.name)}</option>`));
+    const preview = $('[data-out="cform-preview"]');
+    const err = $(".cform__error", cform);
+    const nome = cform.elements.nome;
+    const compose = () => {
+      const f = cform.elements;
+      const parts = [`Olá, REXX! Meu nome é ${f.nome.value.trim() || "…"}.`, `${f.assunto.value}${f.modelo.value ? ` — ${f.modelo.value}` : ""}.`];
+      if (f.mensagem.value.trim()) parts.push(f.mensagem.value.trim());
+      parts.push(`Prefiro resposta no período da ${f.horario.value}.`);
+      return parts.join("\n");
+    };
+    const update = () => { preview.textContent = compose(); };
+    cform.addEventListener("input", update);
+    cform.addEventListener("change", update);
+    update();
+    cform.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!nome.value.trim()) { err.hidden = false; nome.classList.add("is-invalid"); nome.focus(); return; }
+      err.hidden = true; nome.classList.remove("is-invalid");
+      const msg = compose();
+      if (waNumber) { window.open(waLink(msg), "_blank", "noopener"); return; }
+      // Sem WhatsApp configurado: copia a mensagem e abre o Instagram da loja
+      let copied = false;
+      try { await navigator.clipboard.writeText(msg); copied = true; } catch (x) {}
+      let note = $(".cform__note", cform);
+      if (!note) { note = document.createElement("p"); note.className = "cform__note"; cform.appendChild(note); }
+      note.textContent = copied
+        ? "Mensagem copiada! O WhatsApp da loja ainda vai ser publicado aqui — por enquanto, cole a mensagem no Direct do Instagram."
+        : "O WhatsApp da loja ainda vai ser publicado aqui — por enquanto, envie a mensagem pelo Direct do Instagram.";
+      if (contact.instagram) window.open(contact.instagram, "_blank", "noopener");
+    });
+  }
+
+  /* =============== Botão flutuante: aparece depois do hero, some perto do contato =============== */
+  const waFloat = $(".wa-float");
+  const quietZones = $$("#contato, #loja, .footer");
+  function updateFloat(vh) {
+    if (!waFloat) return;
+    const past = window.scrollY > vh * 0.9;
+    const quiet = quietZones.some((z) => { const r = z.getBoundingClientRect(); return r.top < vh * 0.8 && r.bottom > 0; });
+    waFloat.classList.toggle("is-shown", past && !quiet && menu.hidden);
+  }
+
   /* =============== Movimento ligado ao scroll (um único rAF) =============== */
   const plate = $("[data-parallax]");
   const progress = $(".progress");
@@ -252,7 +360,9 @@
     const vh = window.innerHeight;
     const max = document.documentElement.scrollHeight - vh;
     progress.style.setProperty("--sp", max > 0 ? (sy / max).toFixed(4) : 0);
+    updateFloat(vh);
     if (reduced()) return;
+    scrubStatement(vh);
 
     const hr = hero.getBoundingClientRect();
     if (hr.bottom > 0) {

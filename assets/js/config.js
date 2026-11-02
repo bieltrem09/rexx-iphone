@@ -198,4 +198,17 @@ window.REXX_CONFIG = {
     },
   ],
 
+  /**
+   * [EDITAR] Depoimentos REAIS de clientes (com autorização). Enquanto a lista
+   * estiver vazia, a seção "Quem já comprou" não aparece no site.
+   * Ex.: { text: "Fui muito bem atendido...", name: "Ana", detail: "Comprou um iPhone 16" }
+   */
+  testimonials: [],
+
+  /**
+   * [EDITAR] Serviços que a loja REALMENTE oferece, além da venda.
+   * Enquanto estiver vazia, a seção "Além do aparelho" não aparece.
+   * Ex.: { title: "Película e capa", text: "Aplicamos na hora da compra." }
+   */
+  services: [],
 };

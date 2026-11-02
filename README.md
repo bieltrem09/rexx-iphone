@@ -14,8 +14,9 @@ Abra http://localhost:8000.
 ## Estrutura
 
 ```
-index.html              Página única: intro, hero, faixa, detalhe, configurador, comparar,
-                        guia de armazenamento, como comprar, dúvidas, Instagram, loja
+index.html              Página única: intro, hero, faixa, detalhe, veja de perto, configurador,
+                        comparar, guia rápido, sobre, como comprar, dicas, dúvidas,
+                        [depoimentos], [serviços], Instagram, fale com a REXX, loja
 assets/css/style.css    Design system (tokens no topo) + componentes + responsivo
 assets/js/config.js     ← TODOS os dados da loja ficam aqui
 assets/js/main.js       Interações (nav, reveal, scroll, configurador, WhatsApp)
@@ -37,6 +38,7 @@ Nada abaixo foi inventado; enquanto estiver `null` em `assets/js/config.js`, o s
 - [ ] **Fotos reais**: as imagens atuais são renders de referência em baixa resolução (736 px). Veja `assets/img/loja/LEIA-ME.md` — a foto da loja entra em `store.photo` e aparece automaticamente na seção Loja
 - [ ] **Especificações** da seção Comparar (`models[].specs`) conforme os modelos em estoque
 - [x] **Fotos dos aparelhos**: 22 fotos tratadas (fundo removido, saturação e nitidez) em `assets/img/aparelhos/`, ligadas por cor em `models[].photos`. Os originais enviados ficam em `img/`
+- [ ] **Depoimentos reais** (`testimonials`) e **serviços** além da venda (`services`) em `config.js`: as seções só aparecem quando preenchidas
 - [ ] **Domínio**: atualizar `canonical` no `index.html`, `robots.txt` e `sitemap.xml`
 
 O site **não** diz que a REXX é revendedora autorizada Apple. Só inclua essa informação se houver comprovação.
