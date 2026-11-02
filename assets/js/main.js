@@ -429,14 +429,9 @@
     swords.forEach((w, i) => w.classList.toggle("is-on", i < on));
   }
 
-  /* =============== Dicas: luz laranja segue o ponteiro no card =============== */
-  if (finePointer) {
-    $$(".tip").forEach((t) => t.addEventListener("pointermove", (e) => {
-      const r = t.getBoundingClientRect();
-      t.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      t.style.setProperty("--my", `${e.clientY - r.top}px`);
-    }));
-  }
+  /* Dicas: linha do tempo acende junto com as colunas */
+  const tl = $(".timeline");
+  if (tl) new IntersectionObserver(([e], o) => { if (e.isIntersecting) { tl.classList.add("is-in"); o.disconnect(); } }, { threshold: 0.25 }).observe(tl);
 
   /* =============== Fale com a REXX: formulário que monta a mensagem =============== */
   const cform = $(".cform");
