@@ -54,6 +54,10 @@
   const hero = $(".hero");
   let seen = false;
   try { seen = sessionStorage.getItem("rexx-intro") === "1"; sessionStorage.setItem("rexx-intro", "1"); } catch (e) {}
+  // letras do REXX gigante entram uma a uma
+  $$(".hero__letters").forEach((w) => {
+    w.innerHTML = [...w.textContent].map((c, i) => `<span class="hl" style="--li:${i}">${esc(c)}</span>`).join("");
+  });
   const startHero = () => {
     hero.classList.add("is-loaded");
     $$(".hero__title .line").forEach((l) => l.classList.add("is-in"));

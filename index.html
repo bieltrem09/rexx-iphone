@@ -19,7 +19,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/img/aparelhos/iphone-17-pro-max-laranja.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/img/hero/ceu.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/img/hero/iphone-17-pro-max-laranja.webp" type="image/webp">
   <link rel="stylesheet" href="assets/css/style.css">
 
   <script type="application/ld+json">
@@ -85,54 +86,29 @@
 
     <!-- HERO -->
     <section class="hero" id="topo" data-theme="light" aria-labelledby="hero-title">
-      <div class="hero__bg" aria-hidden="true">
-        <div class="hero__orb"></div>
-        <div class="hero__rings"><i></i><i></i><i></i></div>
-      </div>
+      <div class="hero__card">
+        <img class="hero__sky" src="assets/img/hero/ceu.webp" alt="" width="2560" height="1440" fetchpriority="high" decoding="async">
 
-      <div class="hero__copy wrap">
-        <p class="eyebrow reveal"><span class="eyebrow__dot"></span>Limeira — SP · iPhone &amp; tecnologia</p>
-        <h1 class="hero__title" id="hero-title">
-          <span class="line"><span>Tecnologia em</span></span>
-          <span class="line"><span>primeiro plano<span class="accent">.</span></span></span>
-        </h1>
-        <p class="hero__lead reveal">Escolha seu próximo iPhone conversando com quem trabalha com ele todos os dias. Modelo, cor e capacidade — você define, a REXX confirma.</p>
-        <div class="hero__actions reveal">
-          <a class="btn btn--solid" data-magnetic data-wa="Olá, REXX! Gostaria de consultar a disponibilidade de um iPhone." href="#loja">Consultar disponibilidade</a>
-          <a class="btn btn--ghost" data-magnetic href="#linha">Ver a linha</a>
+        <p class="hero__eyebrow">Limeira — SP · Loja REXX</p>
+        <h1 class="hero__word" id="hero-title"><span class="hero__letters" aria-hidden="true">REXX</span><span class="sr">REXX — iPhones e tecnologia em Limeira, SP</span></h1>
+        <p class="hero__label">iPhone 17 Pro Max</p>
+
+        <img class="hero__clouds" src="assets/img/hero/nuvens.webp" alt="" width="2560" height="880" decoding="async">
+
+        <svg class="hero__orbit" viewBox="0 0 1000 240" preserveAspectRatio="none" aria-hidden="true">
+          <ellipse id="orbitPath" cx="500" cy="120" rx="490" ry="110" fill="none" />
+          <circle r="6"><animateMotion dur="9s" repeatCount="indefinite" rotate="auto"><mpath href="#orbitPath"/></animateMotion></circle>
+        </svg>
+
+        <div class="hero__product">
+          <img class="hero__phone" src="assets/img/hero/iphone-17-pro-max-laranja.webp" alt="iPhone 17 Pro Max na cor laranja-cósmico" width="810" height="1430" fetchpriority="high" decoding="async">
+          <i class="hero__shadow" aria-hidden="true"></i>
         </div>
-      </div>
 
-      <div class="hero__stage" data-hero-stage>
-        <div class="hero__phones">
-            <a class="hphone" href="#destaque" data-hero-model="16" style="--x:-58;--r:-14deg;--s:0.7;--d:0.45;--sp:-260;--i:0;z-index:8" aria-label="Ver iPhone 16 ultramarino de perto">
-              <span class="hphone__img" style="-webkit-mask-image:url(assets/img/aparelhos/iphone-16-ultramarino.webp);mask-image:url(assets/img/aparelhos/iphone-16-ultramarino.webp)"><img src="assets/img/aparelhos/iphone-16-ultramarino.webp" alt="iPhone 16 ultramarino" decoding="async"></span>
-              <i class="hphone__shadow" aria-hidden="true"></i>
-            </a>
-            <a class="hphone" href="#destaque" data-hero-model="17-pro-max" style="--x:-30;--r:-7deg;--s:0.86;--d:0.75;--sp:-140;--i:1;z-index:9" aria-label="Ver iPhone 17 Pro Max azul-intenso de perto">
-              <span class="hphone__img" style="-webkit-mask-image:url(assets/img/aparelhos/iphone-17-pro-max-azul.webp);mask-image:url(assets/img/aparelhos/iphone-17-pro-max-azul.webp)"><img src="assets/img/aparelhos/iphone-17-pro-max-azul.webp" alt="iPhone 17 Pro Max azul-intenso" decoding="async"></span>
-              <i class="hphone__shadow" aria-hidden="true"></i>
-            </a>
-            <a class="hphone" href="#destaque" data-hero-model="17-pro-max" style="--x:0;--r:0deg;--s:1;--d:1.2;--sp:0;--i:2;z-index:10" aria-label="Ver iPhone 17 Pro Max laranja-cósmico de perto">
-              <span class="hphone__img" style="-webkit-mask-image:url(assets/img/aparelhos/iphone-17-pro-max-laranja.webp);mask-image:url(assets/img/aparelhos/iphone-17-pro-max-laranja.webp)"><img src="assets/img/aparelhos/iphone-17-pro-max-laranja.webp" alt="iPhone 17 Pro Max laranja-cósmico" decoding="async" fetchpriority="high"></span>
-              <i class="hphone__shadow" aria-hidden="true"></i>
-            </a>
-            <a class="hphone" href="#destaque" data-hero-model="17-pro-max" style="--x:30;--r:7deg;--s:0.86;--d:0.75;--sp:140;--i:3;z-index:9" aria-label="Ver iPhone 17 Pro Max prateado de perto">
-              <span class="hphone__img" style="-webkit-mask-image:url(assets/img/aparelhos/iphone-17-pro-max-prateado.webp);mask-image:url(assets/img/aparelhos/iphone-17-pro-max-prateado.webp)"><img src="assets/img/aparelhos/iphone-17-pro-max-prateado.webp" alt="iPhone 17 Pro Max prateado" decoding="async"></span>
-              <i class="hphone__shadow" aria-hidden="true"></i>
-            </a>
-            <a class="hphone" href="#destaque" data-hero-model="17" style="--x:58;--r:14deg;--s:0.7;--d:0.45;--sp:260;--i:4;z-index:8" aria-label="Ver iPhone 17 lavanda de perto">
-              <span class="hphone__img" style="-webkit-mask-image:url(assets/img/aparelhos/iphone-17-lavanda.webp);mask-image:url(assets/img/aparelhos/iphone-17-lavanda.webp)"><img src="assets/img/aparelhos/iphone-17-lavanda.webp" alt="iPhone 17 lavanda" decoding="async"></span>
-              <i class="hphone__shadow" aria-hidden="true"></i>
-            </a>
-        </div>
-        <ul class="hero__facts" aria-label="Destaques">
-          <li><b>15 → 17</b><span>Do iPhone 15 ao 17 Pro Max</span></li>
-          <li><b>WhatsApp</b><span>Atendimento direto com a loja</span></li>
-          <li><b>Limeira</b><span>Loja em Limeira — SP</span></li>
-        </ul>
+        <a class="hero__cta" data-magnetic data-wa="Olá, REXX! Vim pelo site e quero consultar o iPhone 17 Pro Max." href="#contato">Consultar agora</a>
+        <p class="hero__tag">Tecnologia em primeiro plano.</p>
+        <a class="hero__play" href="#destaque" aria-label="Ver os iPhones de perto"><span></span></a>
       </div>
-
     </section>
 
     <!-- FAIXA LARANJA -->
