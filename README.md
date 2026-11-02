@@ -33,6 +33,7 @@ Nada abaixo foi inventado; enquanto estiver `null` em `assets/js/config.js`, o s
 - [ ] **Razão social e CNPJ** (`store.legalName`, `store.cnpj`) — aparecem no rodapé
 - [ ] **Modelos, cores e capacidades** do configurador (`models`) conforme o estoque real
 - [ ] **Tom exato do laranja REXX**: hoje `#ff5a00`. Para ajustar, edite só os tokens `--orange*` no topo de `style.css`
+- [ ] **Mascote oficial**: o dino neon do site é uma releitura em SVG (função `dinoSVG` em `main.js`). Se houver a arte oficial em SVG/PNG, troque ali
 - [ ] **Logo oficial**: hoje o logo é tipográfico (`REXX` + bola laranja). Substitua o `.wordmark` no `index.html` por um SVG quando houver arquivo
 - [ ] **Fotos reais**: as imagens atuais são renders de referência em baixa resolução (736 px). Veja `assets/img/loja/LEIA-ME.md` — a foto da loja entra em `store.photo` e aparece automaticamente na seção Loja
 - [ ] **Especificações** da seção Comparar (`models[].specs`) conforme os modelos em estoque

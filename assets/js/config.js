@@ -24,7 +24,7 @@ window.REXX_CONFIG = {
 
   store: {
     // [EDITAR] Endereço completo da loja
-    address: "Av. Marechal Arthur da Costa e Silva, 1430 — Loja 8, Jardim Glória, Limeira — SP, 13487-230", // fonte: cadastro do CNPJ
+    address: "Galeria Florida Mall & Suites · Av. Marechal Arthur da Costa e Silva, 1430 — Loja 8, Jardim Glória, Limeira — SP, 13487-230", // fonte: cadastro do CNPJ + localização dos posts no Instagram
     // [EDITAR] Link do Google Maps (deixe null para gerar uma busca automática)
     mapsUrl: null,
     // Texto usado para localizar a loja no mapa e nos apps de rota

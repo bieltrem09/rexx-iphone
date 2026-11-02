@@ -265,6 +265,83 @@
     }
   }
 
+  /* =============== Mascote: o dino neon da REXX =============== */
+  // [EDITAR] Para usar a arte oficial, troque este SVG pelo arquivo do mascote.
+  let dinoN = 0;
+  const dinoSVG = () => {
+    const id = `dg${++dinoN}`;
+    const n = `class="dn dl" pathLength="1" filter="url(#${id})"`;
+    const p = `class="dp dl" pathLength="1" filter="url(#${id}p)"`;
+    const w = `class="dw dl" pathLength="1"`;
+    return `<svg viewBox="0 0 420 400" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="${id}" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="${id}p" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g class="dino__all">
+        <g class="dino__tail"><path ${n} d="M150 300 C 118 318, 76 322, 34 300"/></g>
+        <g class="dino__body">
+          <path ${n} d="M150 196 C 128 228, 126 266, 150 300 C 172 330, 222 344, 268 334 C 300 327, 318 306, 318 282"/>
+          <path ${n} d="M226 344 L 220 378 L 250 378"/>
+          <path ${n} d="M282 330 L 290 376 L 318 376"/>
+          <path ${n} d="M238 250 C 258 252, 270 262, 272 276 M272 276 l 9 -3 M272 276 l 3 9"/>
+          <path ${n} d="M150 196 C 132 150, 152 96, 214 86 C 268 78, 320 92, 346 126 C 356 140, 358 154, 350 160 C 344 165, 334 164, 322 162 L 238 160"/>
+          <g class="dino__jaw">
+            <path ${n} d="M238 178 L 330 184 C 344 186, 344 202, 330 206 C 292 220, 236 222, 196 210"/>
+            <path ${w} d="M250 182 l 7 -10 l 7 10 l 7 -10 l 7 10 l 7 -10 l 7 10 l 7 -10 l 7 10 l 7 -10 l 7 10"/>
+            <path ${p} d="M252 196 C 272 204, 300 204, 318 194"/>
+          </g>
+          <path ${w} d="M244 160 l 7 11 l 7 -11 l 7 11 l 7 -11 l 7 11 l 7 -11 l 7 11 l 7 -11 l 7 11 l 7 -11 l 7 11"/>
+          <circle ${n} cx="262" cy="118" r="15"/>
+          <circle class="dino__pupil" cx="266" cy="118" r="6"/>
+          <path ${n} d="M240 96 C 256 84, 280 86, 292 98"/>
+          <path ${n} d="M326 112 c 6 -5 12 -5 16 0"/>
+          <path ${n} d="M166 142 l -14 -6 l 10 -10 M178 118 l -12 -10 l 14 -6"/>
+        </g>
+      </g>
+    </svg>`;
+  };
+  const dinos = $$("[data-dino]");
+  dinos.forEach((el) => {
+    el.innerHTML = dinoSVG();
+    el.classList.add("dino");
+    // traços acendem em sequência
+    $$(".dl", el).forEach((pth, i) => pth.style.setProperty("--d", `${(i * 0.07).toFixed(2)}s`));
+  });
+  // acende quando aparece na tela
+  const dinoIO = new IntersectionObserver((ents) => ents.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-on"); dinoIO.unobserve(e.target); }
+  }), { threshold: 0.35 });
+  dinos.forEach((d) => dinoIO.observe(d));
+  // olho segue o ponteiro
+  if (finePointer && dinos.length) {
+    window.addEventListener("pointermove", (e) => {
+      if (reduced()) return;
+      dinos.forEach((d) => {
+        const pupil = $(".dino__pupil", d);
+        if (!pupil) return;
+        const r = d.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        // centro do olho no desenho: (262,118) num quadro 420×400
+        const ex = r.left + r.width * (262 / 420), ey = r.top + r.height * (118 / 400);
+        const a = Math.atan2(e.clientY - ey, e.clientX - ex);
+        pupil.setAttribute("cx", (262 + Math.cos(a) * 6).toFixed(1));
+        pupil.setAttribute("cy", (118 + Math.sin(a) * 6).toFixed(1));
+      });
+    }, { passive: true });
+  }
+  // clique: o dino ruge
+  const roar = (wall) => {
+    if (!wall || wall.classList.contains("is-roar")) return;
+    wall.classList.add("is-roar");
+    setTimeout(() => wall.classList.remove("is-roar"), 1600);
+  };
+  $$("[data-dino-wall]").forEach((wall) => {
+    const sign = $("[data-dino]", wall);
+    sign.addEventListener("click", () => roar(wall));
+    sign.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); roar(wall); } });
+  });
+
   /* =============== Sobre: frase que acende palavra por palavra com o scroll =============== */
   const statement = $("[data-scrub]");
   let swords = [];
