@@ -32,9 +32,9 @@ Nada abaixo foi inventado; enquanto estiver `null` em `assets/js/config.js`, o s
 - [ ] **Horário de atendimento** (`store.hours`)
 - [ ] **Razão social e CNPJ** (`store.legalName`, `store.cnpj`) — aparecem no rodapé
 - [ ] **Modelos, cores e capacidades** do configurador (`models`) conforme o estoque real
-- [ ] **Tom exato do laranja REXX**: hoje `#ff5a00`. Para ajustar, edite só os tokens `--orange*` no topo de `style.css`
+- [x] **Cor da marca**: amarelo do logo `#fcca09` + grafite `#3a3d44` (tokens `--orange*` e `--graphite-brand` no topo de `style.css`)
 - [ ] **Mascote oficial**: o dino neon do site é uma releitura em SVG do letreiro da loja (T-rex de boca aberta com camiseta REXX), feita a partir de uma foto do Instagram. Se houver a arte oficial em SVG/PNG, troque na função `dinoSVG` em `main.js`
-- [ ] **Logo oficial**: hoje o logo é tipográfico (`REXX` + bola laranja). Substitua o `.wordmark` no `index.html` por um SVG quando houver arquivo
+- [x] **Logo oficial** em `assets/img/marca/` (menu, hero, abertura, rodapé e ícone). Se houver versão em SVG, troque para ficar ainda mais nítido
 - [ ] **Fotos reais**: as imagens atuais são renders de referência em baixa resolução (736 px). Veja `assets/img/loja/LEIA-ME.md` — a foto da loja entra em `store.photo` e aparece automaticamente na seção Loja
 - [ ] **Especificações** da seção Comparar (`models[].specs`) conforme os modelos em estoque
 - [x] **Fotos dos aparelhos**: 22 fotos tratadas (fundo removido, saturação e nitidez) em `assets/img/aparelhos/`, ligadas por cor em `models[].photos`. Os originais enviados ficam em `img/`

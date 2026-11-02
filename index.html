@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>REXX Limeira — iPhones e tecnologia em Limeira, SP</title>
   <meta name="description" content="REXX Limeira: iPhones e tecnologia em Limeira, SP. Compare modelos, escolha cor e capacidade e fale direto com a loja pelo WhatsApp.">
-  <meta name="theme-color" content="#0b0b0c">
+  <meta name="theme-color" content="#fcca09">
   <!-- [EDITAR] troque pelo domínio definitivo -->
   <link rel="canonical" href="https://rexx-iphone.vercel.app/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="REXX Limeira — Tecnologia em primeiro plano">
   <meta property="og:description" content="iPhones e tecnologia em Limeira, SP. Consulte disponibilidade direto com a loja.">
-  <meta property="og:image" content="https://rexx-iphone.vercel.app/assets/img/rexx-lineup.jpg">
+  <meta property="og:image" content="https://rexx-iphone.vercel.app/assets/img/marca/logo-rexx-192.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/marca/logo-rexx-192.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/img/hero/ceu.webp" type="image/webp">
-  <link rel="preload" as="image" href="assets/img/hero/iphone-17-pro-max-laranja.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/img/marca/logo-rexx.webp" type="image/webp">
   <link rel="stylesheet" href="assets/css/style.css">
 
   <script type="application/ld+json">
@@ -40,9 +40,7 @@
 
   <!-- INTRO -->
   <div class="intro" aria-hidden="true">
-    <div class="intro__mark">
-      <span class="intro__letters"><span>R</span><span>E</span><span>X</span><span>X</span></span><span class="intro__ball"></span>
-    </div>
+    <img class="intro__logo" src="assets/img/marca/logo-rexx.webp" alt="" width="625" height="625">
     <div class="intro__bar"><span></span></div>
   </div>
 
@@ -51,10 +49,12 @@
   <!-- NAV -->
   <header class="nav" data-theme="light">
     <div class="nav__inner">
-      <a class="wordmark" href="#topo" aria-label="REXX Limeira — início">
-        <span class="wordmark__type">REXX</span><span class="wordmark__ball" aria-hidden="true"></span>
+      <a class="brand" href="#topo" aria-label="REXX iPhones — início">
+        <img class="brand__logo" src="assets/img/marca/logo-rexx-96.png" alt="" width="48" height="48">
+        <span class="brand__name">REXX <b>iPhones</b></span>
       </a>
       <nav class="nav__links" aria-label="Principal">
+        <span class="nav__pill" aria-hidden="true"></span>
         <a href="#destaque">Destaque</a>
         <a href="#linha">Linha</a>
         <a href="#comparar">Comparar</a>
@@ -62,10 +62,16 @@
         <a href="#duvidas">Dúvidas</a>
         <a href="#contato">Contato</a>
       </nav>
-      <a class="btn btn--sm btn--solid nav__cta" data-magnetic data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#loja">WhatsApp</a>
-      <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
-        <span></span><span></span>
-      </button>
+      <div class="nav__end">
+        <a class="nav__icon" data-fill-href="instagram" href="https://www.instagram.com/rexxlimeira/" target="_blank" rel="noopener" aria-label="Instagram da REXX">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+        </a>
+        <a class="nav__cta" data-magnetic data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#contato">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v7.4a2.8 2.8 0 0 1-2.8 2.8H8.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <span>WhatsApp</span>
+        </a>
+        <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><span></span><span></span></button>
+      </div>
     </div>
   </header>
 
@@ -79,43 +85,48 @@
       <a href="#duvidas"><small>06</small>Dúvidas</a>
       <a href="#contato"><small>07</small>Contato</a>
     </nav>
-    <a class="btn btn--solid btn--block" data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#loja">Falar no WhatsApp</a>
+    <a class="btn btn--solid btn--block" data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#contato">Falar no WhatsApp</a>
   </div>
 
   <main id="conteudo">
 
     <!-- HERO -->
-    <section class="hero" id="topo" data-theme="light" aria-labelledby="hero-title">
+    <section class="hero" id="topo" data-theme="orange" aria-labelledby="hero-title">
       <div class="hero__card">
-        <img class="hero__sky" src="assets/img/hero/ceu.webp" alt="" width="2560" height="1440" fetchpriority="high" decoding="async">
+        <div class="hero__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <p class="hero__giant" aria-hidden="true"><span>REXX</span></p>
 
-        <p class="hero__eyebrow">Limeira — SP · Loja REXX</p>
-        <h1 class="hero__word" id="hero-title"><span class="hero__letters" aria-hidden="true">REXX</span><span class="sr">REXX — iPhones e tecnologia em Limeira, SP</span></h1>
-        <p class="hero__label">iPhone 17 Pro Max</p>
-
-        <img class="hero__clouds" src="assets/img/hero/nuvens.webp" alt="" width="2560" height="880" decoding="async">
-
-        <svg class="hero__orbit" viewBox="0 0 1000 240" preserveAspectRatio="none" aria-hidden="true">
-          <ellipse id="orbitPath" cx="500" cy="120" rx="490" ry="110" fill="none" />
-          <circle r="6"><animateMotion dur="9s" repeatCount="indefinite" rotate="auto"><mpath href="#orbitPath"/></animateMotion></circle>
-        </svg>
-
-        <div class="hero__product">
-          <img class="hero__phone" src="assets/img/hero/iphone-17-pro-max-laranja.webp" alt="iPhone 17 Pro Max na cor laranja-cósmico" width="810" height="1430" fetchpriority="high" decoding="async">
-          <i class="hero__shadow" aria-hidden="true"></i>
+        <div class="hero__stage" data-orbit aria-label="Linha de iPhones da REXX">
+          <div class="orbit"><img class="orbit__phone" src="assets/img/hero/iphone-17-pro-max-laranja.webp" alt="iPhone 17 Pro Max laranja-cósmico" decoding="async"><img class="orbit__phone" src="assets/img/aparelhos/iphone-16-pro-titanio-deserto.webp" alt="iPhone 16 Pro titânio-deserto" decoding="async"><img class="orbit__phone" src="assets/img/aparelhos/iphone-17-lavanda.webp" alt="iPhone 17 lavanda" decoding="async"><img class="orbit__phone" src="assets/img/aparelhos/iphone-15-pro-max-titanio-preto.webp" alt="iPhone 15 Pro Max titânio preto" decoding="async"><img class="orbit__phone" src="assets/img/aparelhos/iphone-16-ultramarino.webp" alt="iPhone 16 ultramarino" decoding="async"><img class="orbit__phone" src="assets/img/aparelhos/iphone-17-pro-azul.webp" alt="iPhone 17 Pro azul-intenso" decoding="async"></div>
+          <div class="hero__badge">
+            <span class="hero__ring hero__ring--a" aria-hidden="true"></span>
+            <span class="hero__ring hero__ring--b" aria-hidden="true"></span>
+            <img class="hero__logo" src="assets/img/marca/logo-rexx.webp" alt="Logo REXX iPhones" width="625" height="625" fetchpriority="high">
+          </div>
         </div>
 
-        <a class="hero__cta" data-magnetic data-wa="Olá, REXX! Vim pelo site e quero consultar o iPhone 17 Pro Max." href="#contato">Consultar agora</a>
-        <p class="hero__tag">Tecnologia em primeiro plano.</p>
-        <a class="hero__play" href="#destaque" aria-label="Ver os iPhones de perto"><span></span></a>
+        <div class="hero__text">
+          <h1 class="hero__title" id="hero-title">
+            <span class="line"><span>Seu próximo iPhone</span></span>
+            <span class="line"><span>começa na REXX.</span></span>
+          </h1>
+          <div class="hero__side">
+            <p class="hero__lead">Celulares e acessórios com atendimento de quem entende — direto com a equipe da loja.</p>
+            <div class="hero__actions">
+              <a class="btn btn--ink" data-magnetic data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#contato">Falar no WhatsApp</a>
+              <a class="btn btn--ghost-ink" data-magnetic href="#destaque">Ver iPhones</a>
+            </div>
+          </div>
+        </div>
+        <p class="hero__slogan" aria-hidden="true">REXX NÃO PARA!</p>
       </div>
     </section>
 
     <!-- FAIXA LARANJA -->
     <div class="band" aria-hidden="true">
       <div class="band__track">
-        <span>iPhone 17 Pro</span><i></i><span>Limeira — SP</span><i></i><span>Atendimento direto</span><i></i><span>REXX</span><i></i>
-        <span>iPhone 17 Pro</span><i></i><span>Limeira — SP</span><i></i><span>Atendimento direto</span><i></i><span>REXX</span><i></i>
+        <span>REXX NÃO PARA!</span><i></i><span>Celulares &amp; acessórios</span><i></i><span>Atendimento direto</span><i></i><span>REXX iPhones</span><i></i>
+        <span>REXX NÃO PARA!</span><i></i><span>Celulares &amp; acessórios</span><i></i><span>Atendimento direto</span><i></i><span>REXX iPhones</span><i></i>
       </div>
     </div>
 
@@ -475,7 +486,7 @@
               </span>
               <span class="ig-bio">iPhones e tecnologia · Limeira — SP</span>
               <span class="ig-buttons"><span class="ig-follow">Seguir</span><span class="ig-msg">Mensagem</span></span>
-              <span class="ig-feed"><span class="ig-feed__track"><span class="ig-tile" style="--bg:#ff5a00"><img src="assets/img/aparelhos/iphone-17-pro-max-laranja.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#2f3a9e"><img src="assets/img/aparelhos/iphone-16-ultramarino.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#6d5bd0"><img src="assets/img/aparelhos/iphone-17-lavanda.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#c9905e"><img src="assets/img/aparelhos/iphone-16-pro-titanio-deserto.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#1c2b5a"><img src="assets/img/aparelhos/iphone-17-pro-azul.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#178f80"><img src="assets/img/aparelhos/iphone-16-verde.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#8d8576"><img src="assets/img/aparelhos/iphone-15-pro-max-titanio-natural.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#3d74c9"><img src="assets/img/aparelhos/iphone-17-azul-nevoa.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#9aa3b5"><img src="assets/img/aparelhos/iphone-17-pro-max-prateado.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#5fae7c"><img src="assets/img/aparelhos/iphone-15-verde.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#2a2c33"><img src="assets/img/aparelhos/iphone-16-pro-titanio-preto.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#c5cfe2"><img src="assets/img/aparelhos/iphone-17-branco.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#ff5a00"><img src="assets/img/aparelhos/iphone-17-pro-max-laranja.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#2f3a9e"><img src="assets/img/aparelhos/iphone-16-ultramarino.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#6d5bd0"><img src="assets/img/aparelhos/iphone-17-lavanda.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#c9905e"><img src="assets/img/aparelhos/iphone-16-pro-titanio-deserto.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#1c2b5a"><img src="assets/img/aparelhos/iphone-17-pro-azul.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#178f80"><img src="assets/img/aparelhos/iphone-16-verde.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#8d8576"><img src="assets/img/aparelhos/iphone-15-pro-max-titanio-natural.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#3d74c9"><img src="assets/img/aparelhos/iphone-17-azul-nevoa.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#9aa3b5"><img src="assets/img/aparelhos/iphone-17-pro-max-prateado.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#5fae7c"><img src="assets/img/aparelhos/iphone-15-verde.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#2a2c33"><img src="assets/img/aparelhos/iphone-16-pro-titanio-preto.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#c5cfe2"><img src="assets/img/aparelhos/iphone-17-branco.webp" alt="" loading="lazy" decoding="async"></span></span></span>
+              <span class="ig-feed"><span class="ig-feed__track"><span class="ig-tile" style="--bg:#fcca09"><img src="assets/img/aparelhos/iphone-17-pro-max-laranja.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#2f3a9e"><img src="assets/img/aparelhos/iphone-16-ultramarino.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#6d5bd0"><img src="assets/img/aparelhos/iphone-17-lavanda.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#c9905e"><img src="assets/img/aparelhos/iphone-16-pro-titanio-deserto.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#1c2b5a"><img src="assets/img/aparelhos/iphone-17-pro-azul.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#178f80"><img src="assets/img/aparelhos/iphone-16-verde.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#8d8576"><img src="assets/img/aparelhos/iphone-15-pro-max-titanio-natural.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#3d74c9"><img src="assets/img/aparelhos/iphone-17-azul-nevoa.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#9aa3b5"><img src="assets/img/aparelhos/iphone-17-pro-max-prateado.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#5fae7c"><img src="assets/img/aparelhos/iphone-15-verde.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#2a2c33"><img src="assets/img/aparelhos/iphone-16-pro-titanio-preto.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#c5cfe2"><img src="assets/img/aparelhos/iphone-17-branco.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#fcca09"><img src="assets/img/aparelhos/iphone-17-pro-max-laranja.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#2f3a9e"><img src="assets/img/aparelhos/iphone-16-ultramarino.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#6d5bd0"><img src="assets/img/aparelhos/iphone-17-lavanda.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#c9905e"><img src="assets/img/aparelhos/iphone-16-pro-titanio-deserto.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#1c2b5a"><img src="assets/img/aparelhos/iphone-17-pro-azul.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#178f80"><img src="assets/img/aparelhos/iphone-16-verde.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#8d8576"><img src="assets/img/aparelhos/iphone-15-pro-max-titanio-natural.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#3d74c9"><img src="assets/img/aparelhos/iphone-17-azul-nevoa.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#9aa3b5"><img src="assets/img/aparelhos/iphone-17-pro-max-prateado.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#5fae7c"><img src="assets/img/aparelhos/iphone-15-verde.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#2a2c33"><img src="assets/img/aparelhos/iphone-16-pro-titanio-preto.webp" alt="" loading="lazy" decoding="async"></span><span class="ig-tile" style="--bg:#c5cfe2"><img src="assets/img/aparelhos/iphone-17-branco.webp" alt="" loading="lazy" decoding="async"></span></span></span>
               </span>
               <iframe class="ig-embed" title="Perfil @rexxlimeira no Instagram" loading="lazy" scrolling="yes" allowtransparency="true"></iframe>
             </span>
@@ -607,6 +618,7 @@
       <div class="footer__giant" aria-hidden="true">REXX<span></span><i class="footer__dino" data-dino></i></div>
       <div class="footer__inner">
         <div class="footer__brand">
+          <img class="footer__logo" src="assets/img/marca/logo-rexx-192.png" alt="REXX iPhones Limeira" width="88" height="88" loading="lazy">
           <p class="footer__claim">Tecnologia em primeiro plano.</p>
           <a class="btn btn--solid" data-wa="Olá, REXX! Vim pelo site e gostaria de atendimento." href="#contato">Falar com a REXX</a>
         </div>

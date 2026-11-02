@@ -97,6 +97,45 @@
     document.dispatchEvent(new CustomEvent("rexx:show-model", { detail: a.dataset.heroModel }));
   }));
 
+  /* =============== Hero: iPhones em órbita ao redor do logo REXX =============== */
+  const orbitStage = $("[data-orbit]");
+  if (orbitStage) {
+    const ph = $$(".orbit__phone", orbitStage);
+    const n = ph.length;
+    let ang = 0, kk = 0, slow = 1, visible = true, last = performance.now();
+    orbitStage.addEventListener("pointerenter", () => (slow = 0.25));
+    orbitStage.addEventListener("pointerleave", () => (slow = 1));
+    new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(orbitStage);
+    const place = () => {
+      const w = orbitStage.clientWidth, h = orbitStage.clientHeight;
+      const p = parseFloat(hero.style.getPropertyValue("--p")) || 0;
+      const hx = parseFloat(hero.style.getPropertyValue("--hx")) || 0;
+      const rx = Math.min(w * 0.38, 560) * kk * (1 + p * 0.5);
+      const ry = Math.min(h * 0.2, 120) * kk * (1 + p * 0.3);
+      ph.forEach((el, i) => {
+        const a = ang + (i * Math.PI * 2) / n;
+        const depth = (Math.sin(a) + 1) / 2;              // 0 = atrás do logo, 1 = na frente
+        const x = Math.cos(a) * rx + hx * 18 * depth;
+        const y = Math.sin(a) * ry;
+        const sc = 0.55 + depth * 0.5;
+        el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${sc.toFixed(3)}) rotate(${(Math.cos(a) * -10).toFixed(2)}deg)`;
+        el.style.zIndex = depth > 0.5 ? 3 : 1;
+        el.style.opacity = (kk * (0.45 + depth * 0.55)).toFixed(3);
+      });
+    };
+    const loop = (now) => {
+      const dt = Math.min(64, now - last); last = now;
+      if (hero.classList.contains("is-loaded")) kk += (1 - kk) * 0.04;
+      if (visible) {
+        if (!reduced()) ang += dt * 0.00022 * slow;
+        place();
+      }
+      requestAnimationFrame(loop);
+    };
+    if (reduced()) { kk = 1; place(); } else requestAnimationFrame(loop);
+    window.addEventListener("resize", place);
+  }
+
   /* =============== Split de palavras nos títulos =============== */
   $$(".split").forEach((el) => {
     let i = 0;
@@ -161,6 +200,29 @@
       const r = s.getBoundingClientRect();
       a.classList.toggle("is-active", r.top <= mid && r.bottom > mid);
     });
+    if (typeof movePill === "function") movePill();
+  }
+
+  /* Pílula amarela que desliza até o link ativo (ou o que está sob o mouse) */
+  const navPill = $(".nav__pill");
+  const linksBox = $(".nav__links");
+  let hoverLink = null;
+  function movePill() {
+    if (!navPill || !linksBox) return;
+    const target = hoverLink || navLinks.find((a) => a.classList.contains("is-active"));
+    navLinks.forEach((a) => a.classList.toggle("is-pill", a === target));
+    if (!target) { linksBox.style.setProperty("--po", 0); return; }
+    linksBox.style.setProperty("--px", `${target.offsetLeft}px`);
+    linksBox.style.setProperty("--pw", `${target.offsetWidth}px`);
+    linksBox.style.setProperty("--po", 1);
+  }
+  navLinks.forEach((a) => {
+    a.addEventListener("pointerenter", () => { hoverLink = a; movePill(); });
+    a.addEventListener("focus", () => { hoverLink = a; movePill(); });
+  });
+  if (linksBox) {
+    linksBox.addEventListener("pointerleave", () => { hoverLink = null; movePill(); });
+    linksBox.addEventListener("focusout", () => { hoverLink = null; movePill(); });
   }
 
   /* =============== Reveal on scroll =============== */
