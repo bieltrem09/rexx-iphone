@@ -171,7 +171,7 @@
     el.style.setProperty("--d", `${Math.min(sibs.indexOf(el), 5) * 0.08}s`);
     io.observe(el);
   });
-  $$(".split, .wipe, .loja__title .line, .step").forEach((el) => io.observe(el));
+  $$(".split, .wipe, .loja__title .line, .insta__title .line, .step").forEach((el) => io.observe(el));
 
   /* =============== Botões magnéticos =============== */
   if (finePointer) {
@@ -212,12 +212,36 @@
     });
   }
 
-  /* Mapa: aparece quando o endereço estiver preenchido */
-  const mapBox = $("[data-fill-map]");
-  if (mapBox && store.address) {
-    $("iframe", mapBox).src = `https://www.google.com/maps?q=${encodeURIComponent(`REXX ${store.address}`)}&output=embed`;
-    mapBox.hidden = false;
+  /* =============== Mapa otimizado: capa leve, iframe só quando chega perto =============== */
+  const mapQ = encodeURIComponent(store.mapsQuery || store.address || "REXX Limeira SP");
+  const routes = {
+    google: `https://www.google.com/maps/dir/?api=1&destination=${mapQ}`,
+    waze: `https://waze.com/ul?q=${mapQ}&navigate=yes`,
+    apple: `https://maps.apple.com/?daddr=${mapQ}`,
+  };
+  $$("[data-route]").forEach((a) => (a.href = routes[a.dataset.route]));
+  $$('[data-fill-href="maps"]').forEach((a) => (a.href = routes.google));
+  const mapEl = $("[data-map]");
+  if (mapEl) {
+    const frame = $("iframe", mapEl);
+    frame.addEventListener("load", () => { if (frame.src) mapEl.classList.add("is-ready"); });
+    new IntersectionObserver(([e], o) => {
+      if (!e.isIntersecting) return;
+      mapEl.classList.add("is-seen");
+      frame.src = `https://www.google.com/maps?q=${mapQ}&z=16&hl=pt-BR&output=embed`;
+      o.disconnect();
+    }, { rootMargin: "300px 0px" }).observe(mapEl);
   }
+  const copyBtn = $("[data-copy-address]");
+  if (copyBtn) {
+    if (!store.address) copyBtn.remove();
+    else copyBtn.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(store.address); copyBtn.textContent = "Endereço copiado ✓"; copyBtn.classList.add("is-done"); }
+      catch (x) { copyBtn.textContent = store.address; }
+      setTimeout(() => { copyBtn.textContent = "Copiar endereço"; copyBtn.classList.remove("is-done"); }, 2500);
+    });
+  }
+  $$("[data-fill-text]").forEach((el) => { const v = contact[el.dataset.fillText]; if (v) el.textContent = v; });
 
   /* =============== Sobre: frase que acende palavra por palavra com o scroll =============== */
   const statement = $("[data-scrub]");
@@ -304,6 +328,8 @@
   const track = $(".compare__track");
   const hint = $(".compare__hint");
   const footer = $(".footer");
+  const lojaSec = $(".loja");
+  const instaSec = $(".insta");
   const band = $(".band__track");
   let ticking = false;
 
@@ -400,6 +426,17 @@
       });
       const active = Math.round(t);
       gdots.forEach((d, i) => d.classList.toggle("is-active", i === active));
+    }
+
+    // Loja: círculo que se abre ao entrar na seção
+    if (lojaSec) {
+      const r = lojaSec.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) lojaSec.style.setProperty("--rv", clamp((vh - r.top) / (vh * 0.85), 0.06, 1).toFixed(4));
+    }
+    // Instagram: celular endireita e texto vazado desliza com o scroll
+    if (instaSec) {
+      const r = instaSec.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) instaSec.style.setProperty("--ip", clamp((vh - r.top) / (vh * 0.95), 0, 1.4).toFixed(4));
     }
 
     const fr = footer.getBoundingClientRect();

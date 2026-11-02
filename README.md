@@ -28,8 +28,7 @@ robots.txt, sitemap.xml SEO técnico
 
 Nada abaixo foi inventado; enquanto estiver `null` em `assets/js/config.js`, o site mostra **"A confirmar"**.
 
-- [ ] **WhatsApp** (`contact.whatsapp`, só números com 55 + DDD). Sem ele, os botões rolam até a seção "Loja" em vez de abrir o WhatsApp.
-- [ ] **Endereço** e link do Google Maps (`store.address`, `store.mapsUrl`)
+- [ ] **Confirmar dados públicos** usados no site (fonte: cadastro do CNPJ e página da loja no Facebook): WhatsApp (19) 98239-5464, endereço Av. Marechal Arthur da Costa e Silva, 1430 — Loja 8, Jardim Glória, Limeira — SP, 13487-230, razão social Rexx Telefonia Ltda e CNPJ 37.469.757/0001-39
 - [ ] **Horário de atendimento** (`store.hours`)
 - [ ] **Razão social e CNPJ** (`store.legalName`, `store.cnpj`) — aparecem no rodapé
 - [ ] **Modelos, cores e capacidades** do configurador (`models`) conforme o estoque real

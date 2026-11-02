@@ -13,24 +13,27 @@ window.REXX_CONFIG = {
 
   contact: {
     // [EDITAR] WhatsApp com DDI + DDD, só números. Ex.: "5519999999999"
-    whatsapp: null,
+    whatsapp: "5519982395464", // fonte: página da loja no Facebook e cadastro do CNPJ — confirmar
     // Número exibido na tela. Ex.: "(19) 99999-9999"
-    whatsappLabel: null,
+    whatsappLabel: "(19) 98239-5464",
     instagram: "https://www.instagram.com/rexxlimeira/",
     instagramHandle: "@rexxlimeira",
+    instagramName: "Rexx iPhones",
     email: null,
   },
 
   store: {
     // [EDITAR] Endereço completo da loja
-    address: null,
+    address: "Av. Marechal Arthur da Costa e Silva, 1430 — Loja 8, Jardim Glória, Limeira — SP, 13487-230", // fonte: cadastro do CNPJ
     // [EDITAR] Link do Google Maps (deixe null para gerar uma busca automática)
     mapsUrl: null,
+    // Texto usado para localizar a loja no mapa e nos apps de rota
+    mapsQuery: "Av. Marechal Arthur da Costa e Silva, 1430, Jardim Glória, Limeira - SP, 13487-230",
     // [EDITAR] Horários reais de atendimento
     hours: null, // Ex.: ["Seg a Sex · 9h às 18h", "Sáb · 9h às 13h"]
     // [EDITAR] Razão social e CNPJ (rodapé)
-    legalName: null,
-    cnpj: null,
+    legalName: "Rexx Telefonia Ltda",
+    cnpj: "37.469.757/0001-39",
     // [EDITAR] Foto real da fachada/interior da loja. Coloque o arquivo em
     // assets/img/loja/ e informe o caminho, ex.: "assets/img/loja/fachada.jpg".
     // Enquanto for null, a foto simplesmente não aparece.
