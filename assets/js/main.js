@@ -243,6 +243,28 @@
   }
   $$("[data-fill-text]").forEach((el) => { const v = contact[el.dataset.fillText]; if (v) el.textContent = v; });
 
+  /* =============== Instagram real dentro do celular (widget oficial de incorporação) =============== */
+  const igPhone = $("[data-ig-phone]");
+  if (igPhone && contact.instagram) {
+    const user = (contact.instagram.match(/instagram\.com\/([^/?#]+)/) || [])[1];
+    const igFrame = $(".ig-embed", igPhone);
+    const note = $("[data-ig-note]");
+    if (user) {
+      let ok = false;
+      igFrame.addEventListener("load", () => {
+        if (!igFrame.src) return;
+        ok = true; igPhone.classList.add("has-embed");
+        if (note) note.textContent = "Perfil real do Instagram · role dentro do celular";
+      });
+      new IntersectionObserver(([e], o) => {
+        if (!e.isIntersecting) return;
+        o.disconnect();
+        igFrame.src = `https://www.instagram.com/${user}/embed/`;
+        setTimeout(() => { if (!ok && note) note.textContent = "Não deu para carregar o perfil agora — toque em “Seguir no Instagram”"; }, 9000);
+      }, { rootMargin: "400px 0px" }).observe(igPhone);
+    }
+  }
+
   /* =============== Sobre: frase que acende palavra por palavra com o scroll =============== */
   const statement = $("[data-scrub]");
   let swords = [];

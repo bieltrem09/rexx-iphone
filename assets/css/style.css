@@ -738,7 +738,16 @@ legend { display: flex; justify-content: space-between; width: 100%; font-family
 }
 .igphone:hover { scale: 1.02; }
 .igphone__island { position: absolute; z-index: 3; left: 50%; top: 22px; width: 92px; height: 26px; border-radius: 20px; background: #000; translate: -50% 0; }
-.igphone__screen { position: relative; display: flex; flex-direction: column; height: 100%; overflow: hidden; border-radius: 42px; background: #fff; color: var(--ink); padding: 58px 14px 0; font-family: var(--f-body); }
+.igphone__screen { position: relative; display: block; height: 100%; overflow: hidden; border-radius: 42px; background: #fff; color: var(--ink); font-family: var(--f-body); isolation: isolate; }
+.ig-fake { display: flex; flex-direction: column; height: 100%; padding: 58px 14px 0; transition: opacity 0.6s var(--ease-out), filter 0.6s; }
+/* perfil REAL do Instagram (widget oficial /embed), reduzido para caber na tela do celular */
+.ig-embed {
+  position: absolute; left: 0; top: 46px; z-index: 2;
+  width: 122%; height: calc((100% - 46px) * 1.22); transform: scale(0.82); transform-origin: 0 0;
+  border: 0; background: #fff; opacity: 0; transition: opacity 0.8s var(--ease-out);
+}
+.igphone.has-embed .ig-embed { opacity: 1; }
+.igphone.has-embed .ig-fake { opacity: 0; filter: blur(6px); }
 .ig-head { display: flex; align-items: center; gap: 12px; }
 .ig-avatar { position: relative; flex: none; width: 62px; height: 62px; border-radius: 50%; padding: 3px; background: conic-gradient(from 200deg, #ff5a00, #ffb000, #ff2d6b, #ff5a00); animation: spin 6s linear infinite; }
 .ig-avatar span { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--ink); color: #fff; font-family: var(--f-display); font-weight: 700; font-size: 24px; border: 3px solid #fff; animation: spin 6s linear infinite reverse; }
@@ -755,6 +764,7 @@ legend { display: flex; justify-content: space-between; width: 100%; font-family
 .ig-feed__track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; animation: igscroll 26s linear infinite; }
 @keyframes igscroll { to { transform: translateY(-50%); } }
 .igphone:hover .ig-feed__track { animation-play-state: paused; }
+.igphone.has-embed .ig-feed__track { animation: none; }
 .ig-tile { position: relative; aspect-ratio: 1; overflow: hidden; background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--bg) 70%, #fff), var(--bg)); display: grid; place-items: center; }
 .ig-tile img { height: 86%; width: auto; max-width: 90%; object-fit: contain; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3)); }
 .insta__note { margin-top: 18px; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(11, 11, 12, 0.6); }
